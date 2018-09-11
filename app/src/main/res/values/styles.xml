@@ -1,0 +1,16 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>  <!--App bar color but we are not using appbar-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item> <!--Status bar color-->
+        <item name="colorAccent">@color/colorAccent</item> <!--Button/Dialog/etc color-->
+    </style>
+
+    <style name="NoTitleStatusBarActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+</resources>

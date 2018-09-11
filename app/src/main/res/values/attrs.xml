@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="custom_font" format="string|reference"/>
+
+    <declare-styleable name="CustomTextView">
+        <attr name="custom_font"/>
+    </declare-styleable>
+</resources>
