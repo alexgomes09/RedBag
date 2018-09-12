@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/bloodRed</color>
-    <color name="colorPrimaryDark">#b30000</color>
-    <color name="colorAccent">@color/bloodRed</color>
-
+    <color name="colorPrimaryDark">#b30000</color> <!--status bar color -->
     <color name="bloodRed">#e60000</color>
 
 </resources>

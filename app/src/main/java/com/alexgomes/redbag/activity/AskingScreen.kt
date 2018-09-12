@@ -17,11 +17,10 @@ class AskingScreen : AppCompatActivity() {
 
         btnDonor.setOnClickListener({
             startActivity(Intent(AskingScreen@this,DonorHomeScreen::class.java))
-            overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left)
+            overridePendingTransition(R.anim.slide_in_right,R.anim.scale_out)
         })
 
         btnRecipient.setOnClickListener({
-
         })
     }
 }

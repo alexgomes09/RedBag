@@ -20,7 +20,7 @@ class SplashScreenActivity : AppCompatActivity() {
             val slideScreenActivity = Intent(this, SlideScreenActivity::class.java)
             startActivity(slideScreenActivity)
             finish()
-        },3000L)
+        },1000L)
     }
 }
 

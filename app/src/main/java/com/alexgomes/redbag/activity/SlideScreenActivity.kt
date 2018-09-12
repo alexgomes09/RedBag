@@ -28,7 +28,7 @@ class SlideScreenActivity : AppCompatActivity() {
             val askingScreen = Intent(SlideScreenActivity@this,AskingScreen::class.java)
             startActivity(askingScreen)
             finish()
-            overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left)
+            overridePendingTransition(R.anim.slide_in_right,R.anim.scale_out)
         }
     }
 
