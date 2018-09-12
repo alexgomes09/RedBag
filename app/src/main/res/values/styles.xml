@@ -5,6 +5,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>  <!--App bar color but we are not using appbar-->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item> <!--Status bar color-->
         <item name="colorAccent">@color/colorAccent</item> <!--Button/Dialog/etc color-->
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
     </style>
 
     <style name="NoTitleStatusBarActionBar" parent="Theme.AppCompat.Light.NoActionBar">

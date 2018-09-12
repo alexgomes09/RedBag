@@ -25,5 +25,8 @@
             android:theme="@style/NoTitleStatusBarActionBar"
             android:exported="true"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.DonorHomeScreen"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>

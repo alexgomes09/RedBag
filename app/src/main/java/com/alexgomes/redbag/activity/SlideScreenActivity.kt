@@ -27,8 +27,8 @@ class SlideScreenActivity : AppCompatActivity() {
         btnSkip.setOnClickListener {
             val askingScreen = Intent(SlideScreenActivity@this,AskingScreen::class.java)
             startActivity(askingScreen)
-            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
             finish()
+            overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left)
         }
     }
 
