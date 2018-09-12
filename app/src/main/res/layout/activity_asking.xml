@@ -1,17 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    android:layout_height="match_parent">
 
     <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/t1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="48dp"
+        android:layout_height="0dp"
+        android:includeFontPadding="false"
+        android:text="Are you a"
         android:textColor="@color/bloodRed"
+        app:layout_constraintHorizontal_weight="90"
+        android:textSize="48dp"
+        app:custom_font="@string/font_bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.alexgomes.redbag.custom.CustomButton
+        android:id="@+id/btnDonor"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="83dp"
+        android:background="@color/bloodRed"
+        android:text="donor"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/t1" />
+
+    <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/t2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="27dp"
+        android:layout_marginTop="27dp"
+        android:includeFontPadding="false"
+        android:text="or"
+        android:textColor="@color/bloodRed"
+        android:textSize="30dp"
         app:custom_font="@string/font_bold"
-        android:text="Are you a"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnDonor" />
+
+    <com.alexgomes.redbag.custom.CustomButton
+        android:id="@+id/btnRecipient"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="94dp"
+        android:background="@color/bloodRed"
+        android:text="recipient"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/btnDonor" />
 </android.support.constraint.ConstraintLayout>

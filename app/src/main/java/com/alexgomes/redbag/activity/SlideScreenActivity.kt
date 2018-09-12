@@ -1,5 +1,6 @@
 package com.alexgomes.redbag.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
 import android.support.v7.app.AppCompatActivity
@@ -24,7 +25,10 @@ class SlideScreenActivity : AppCompatActivity() {
         viewPager.adapter = SliderAdapter()
 
         btnSkip.setOnClickListener {
-
+            val askingScreen = Intent(SlideScreenActivity@this,AskingScreen::class.java)
+            startActivity(askingScreen)
+            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
+            finish()
         }
     }
 

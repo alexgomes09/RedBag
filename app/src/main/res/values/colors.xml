@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="bloodRed">#f22525</color>
+    <color name="bloodRed">#FF0000</color>
 
 </resources>
