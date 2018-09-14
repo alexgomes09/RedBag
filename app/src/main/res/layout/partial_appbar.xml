@@ -7,6 +7,15 @@
     android:layout_height="@dimen/appbar_height"
     android:background="@color/bloodRed">
 
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        app:srcCompat="@drawable/ic_back_arrow" />
+
     <com.alexgomes.redbag.custom.CustomTextView
         android:id="@+id/appbar_title"
         android:layout_width="wrap_content"

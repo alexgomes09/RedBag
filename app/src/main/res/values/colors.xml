@@ -2,5 +2,6 @@
 <resources>
     <color name="colorPrimaryDark">#b30000</color> <!--status bar color -->
     <color name="bloodRed">#e60000</color>
+    <color name="light_gray">#e3e3e3</color>
 
 </resources>

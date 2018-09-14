@@ -1,14 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <include layout="@layout/partial_appbar"/>
+    <include layout="@layout/partial_appbar" />
 
+    <com.alexgomes.redbag.custom.CustomEditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:hint="Name"
+        android:maxLength="30"
+        android:inputType="textPersonName"
+        android:textSize="20sp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
+        <com.alexgomes.redbag.custom.CustomEditText
+            android:id="@+id/etAge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:hint="Age"
+            android:maxLength="2"
+            android:inputType="number"
+            android:textSize="20sp" />
 
+        <com.alexgomes.redbag.custom.CustomEditText
+            android:id="@+id/etBloodGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:hint="Blood Group"
+            android:textSize="20sp" />
+    </LinearLayout>
 
+    <com.alexgomes.redbag.custom.CustomEditText
+        android:id="@+id/etPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:inputType="phone"
+        android:maxLength="15"
+        android:hint="Phone Number"
+        android:textSize="20sp" />
 
+    <com.alexgomes.redbag.custom.CustomEditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Email"
+        android:maxLength="50"
+        android:inputType="textEmailAddress"
+        android:textSize="20sp" />
 
-</android.support.constraint.ConstraintLayout>
+    <com.alexgomes.redbag.custom.CustomButton
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:background="@color/bloodRed"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:text="submit"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+</LinearLayout>
