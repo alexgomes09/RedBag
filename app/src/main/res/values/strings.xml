@@ -2,6 +2,7 @@
     <string name="app_name">RedBag</string>
     <string name="font_regular">PT_Serif-Regular.ttf</string>
     <string name="font_bold">PT_Serif-Bold.ttf</string>
+    <string name="no_connectivity_message">Please Connect to Internet</string>
     <string name="lorem">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at orci risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas consectetur nibh non risus consectetur lobortis. Curabitur ut orci odio. Quisque faucibus magna quis risus lacinia vehicula. Etiam ut sem quis ex varius laoreet nec sit amet velit. Nulla ornare mollis nunc non interdum. Phasellus sit amet cursus sapien. Nunc luctus est sit amet diam molestie, a accumsan nisl ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque ut dolor ex. Sed et dui imperdiet diam dignissim pretium.
 

@@ -4,7 +4,7 @@ import android.content.Context
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatEditText
 import android.util.AttributeSet
-import android.widget.LinearLayout
+import android.view.ViewGroup
 import com.alexgomes.redbag.R
 import com.alexgomes.redbag.dp
 
@@ -45,7 +45,7 @@ class CustomEditText : AppCompatEditText {
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 
-        val params = layoutParams as LinearLayout.LayoutParams
+        val params = layoutParams as ViewGroup.MarginLayoutParams
 
         params.topMargin = params.topMargin + 10.dp
         params.bottomMargin = params.bottomMargin + 10.dp
