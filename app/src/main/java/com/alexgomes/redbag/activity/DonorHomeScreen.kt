@@ -6,7 +6,6 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.util.Log
-import android.util.Patterns
 import android.widget.ArrayAdapter
 import com.alexgomes.redbag.BloodGroup
 import com.alexgomes.redbag.R
@@ -64,11 +63,12 @@ class DonorHomeScreen : AppCompatActivity() {
                     Util.showToast(this@DonorHomeScreen, "At least one contact information required")
                     return@setOnClickListener
                 }
-                !TextUtils.isEmpty(etEmail.text.toString()) && !isValidEmail(etEmail.text.toString()) -> {
+                !TextUtils.isEmpty(etEmail.text.toString()) && !Util.isValidEmail(etEmail.text.toString()) -> {
                     etEmail.error = "Valid email required"
                     return@setOnClickListener
                 }
             }
+
 
             val profileModel = CreateProfileModel(
                     Util.getAndroidUniqueId(),
@@ -96,7 +96,7 @@ class DonorHomeScreen : AppCompatActivity() {
         }
     }
 
-    private fun isValidEmail(email: String): Boolean = email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+
 
     private fun showAgeDialog() {
         val ageDialog = AlertDialog.Builder(this@DonorHomeScreen)

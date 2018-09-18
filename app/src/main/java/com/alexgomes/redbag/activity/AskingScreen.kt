@@ -21,6 +21,8 @@ class AskingScreen : AppCompatActivity() {
         })
 
         btnRecipient.setOnClickListener({
+            startActivity(Intent(AskingScreen@this,RecipientHomeScreen::class.java))
+            overridePendingTransition(R.anim.slide_in_right,R.anim.scale_out)
         })
     }
 }

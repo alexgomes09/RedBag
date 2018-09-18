@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.net.ConnectivityManager
 import android.provider.Settings
+import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -67,6 +68,8 @@ class Util {
             val androidId = Settings.Secure.getString(RedBagApplication.applicationContext().contentResolver, Settings.Secure.ANDROID_ID)
             return androidId
         }
+
+        fun isValidEmail(email: String): Boolean = email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }
 

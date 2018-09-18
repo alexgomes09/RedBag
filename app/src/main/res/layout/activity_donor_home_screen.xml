@@ -72,6 +72,15 @@
             android:maxLength="15"
             android:textSize="20sp" />
 
+        <com.alexgomes.redbag.custom.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="or"
+            android:layout_marginTop="-5dp"
+            android:layout_marginBottom="-5dp"
+            android:includeFontPadding="false"
+            android:layout_gravity="center" />
+
         <com.alexgomes.redbag.custom.CustomEditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"

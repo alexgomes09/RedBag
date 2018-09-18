@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/partial_appbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/appbar_height"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.alexgomes.redbag.custom.CustomEditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/appbar"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                android:hint="Patient name"
+                android:inputType="textPersonName"
+                android:maxLength="30"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <com.alexgomes.redbag.custom.CustomEditText
+                    android:id="@+id/etAge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:hint="Patient age"
+                    android:maxLength="2"
+                    android:textIsSelectable="false"
+                    android:textSize="20sp" />
+
+                <com.alexgomes.redbag.custom.CustomEditText
+                    android:id="@+id/etBloodGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:hint="Blood Group"
+                    android:textIsSelectable="false"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <com.alexgomes.redbag.custom.CustomEditText
+                android:id="@+id/etNumberOfBags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:clickable="true"
+                android:editable="false"
+                android:focusable="false"
+                android:hint="How many bags do you need?"
+                android:textIsSelectable="false"
+                android:maxLength="15"
+                android:textSize="20sp" />
+
+            <com.alexgomes.redbag.custom.CustomEditText
+                android:id="@+id/etAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Patient Address"
+                android:inputType="text"
+                android:textSize="20sp" />
+
+            <com.alexgomes.redbag.custom.CustomEditText
+                android:id="@+id/etPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:digits="0123456789"
+                android:hint="Phone Number"
+                android:inputType="phone"
+                android:maxLength="15"
+                android:textSize="20sp" />
+
+            <com.alexgomes.redbag.custom.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="-5dp"
+                android:layout_marginTop="-5dp"
+                android:includeFontPadding="false"
+                android:text="or" />
+
+            <com.alexgomes.redbag.custom.CustomEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:maxLength="50"
+                android:textSize="20sp" />
+
+            <com.alexgomes.redbag.custom.CustomButton
+                android:id="@+id/btnSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/button_height"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:background="@color/bloodRed"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:text="submit"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <com.alexgomes.redbag.custom.CustomTextView
+                android:id="@+id/error_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/appbar_height"
+                android:alpha="0"
+                android:background="@color/bloodRed"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:padding="5sp"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
