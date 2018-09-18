@@ -39,6 +39,8 @@ class CustomEditText : AppCompatEditText {
 
         background = ContextCompat.getDrawable(context, R.drawable.et_background)
 
+        setTextColor(ContextCompat.getColor(context,android.R.color.black))
+
         setSingleLine(true)
     }
 
@@ -50,6 +52,6 @@ class CustomEditText : AppCompatEditText {
         params.topMargin = params.topMargin + 10.dp
         params.bottomMargin = params.bottomMargin + 10.dp
 
-        setPadding(10.dp, paddingTop, 10.dp, paddingBottom)
+        setPadding(10.dp, 8.dp, 10.dp, 8.dp)
     }
 }

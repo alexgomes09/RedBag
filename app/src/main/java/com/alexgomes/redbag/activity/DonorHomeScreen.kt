@@ -83,7 +83,7 @@ class DonorHomeScreen : AppCompatActivity() {
             RestAdapter.createUserProfile(profileModel, object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     response.isSuccessful.let {
-
+                        Util.showToast(this@DonorHomeScreen, "Create Profile Success")
                     }
                 }
 

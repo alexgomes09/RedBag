@@ -4,6 +4,7 @@ import com.alexgomes.redbag.BuildConfig
 import com.alexgomes.redbag.RedBagApplication
 import com.alexgomes.redbag.Util
 import com.alexgomes.redbag.networking.reqest.CreateProfileModel
+import com.alexgomes.redbag.networking.reqest.RequestBloodModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Callback
@@ -43,5 +44,11 @@ object RestAdapter {
         //we check internet connection before making every network call
         if (!Util.checkForInternet(RedBagApplication.applicationContext())) return
         redBagApiService.createUserProfile(profileModel).enqueue(onResponseListener)
+    }
+
+    fun requestBlood(requestBloodModel: RequestBloodModel,onResponseListener: Callback<Void>) {
+        //we check internet connection before making every network call
+        if (!Util.checkForInternet(RedBagApplication.applicationContext())) return
+        redBagApiService.requestBlood(requestBloodModel).enqueue(onResponseListener)
     }
 }

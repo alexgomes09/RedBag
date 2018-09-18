@@ -4,18 +4,25 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.ArrayAdapter
 import com.alexgomes.redbag.BloodGroup
 import com.alexgomes.redbag.R
 import com.alexgomes.redbag.Util
+import com.alexgomes.redbag.networking.RestAdapter
+import com.alexgomes.redbag.networking.reqest.RequestBloodModel
 import kotlinx.android.synthetic.main.activity_recipient_home_screen.*
 import kotlinx.android.synthetic.main.partial_appbar.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * Created by agomes on 9/16/18.
  */
 class RecipientHomeScreen : AppCompatActivity() {
 
+    private var previousBagSelected = 0
     private var previousAgeSelected = 0
     private var previousBloodGroupSelected = 0
 
@@ -64,36 +71,37 @@ class RecipientHomeScreen : AppCompatActivity() {
                     Util.showToast(this@RecipientHomeScreen, "At least one contact information required")
                     return@setOnClickListener
                 }
-                etEmail.text.toString().isNotEmpty() && !Util.isValidEmail(etEmail.text.toString()) -> {
+                etEmail.text.toString().trim().isNotEmpty() && !Util.isValidEmail(etEmail.text.toString().trim()) -> {
                     etEmail.error = "Valid email required"
                     return@setOnClickListener
                 }
             }
 
 
-//            val profileModel = RequestBloodModel(
-//                    Util.getAndroidUniqueId(),
-//                    etName.text.toString(),
-//                    etAge.text.toString().toInt(),
-//                    etBloodGroup.text.toString(),
-//                    etPhoneNumber.text.toString(),
-//                    etEmail.text.toString()
-//            )
+            val requestBloodModel = RequestBloodModel(
+                    etName.text.toString(),
+                    etAge.text.toString().toInt(),
+                    etBloodGroup.toString(),
+                    previousBagSelected,
+                    etAddress.text.toString(),
+                    etPhoneNumber.text.toString(),
+                    etEmail.text.toString()
+            )
 
 
-//            RestAdapter.createUserProfile(profileModel, object : Callback<Void> {
-//                override fun onResponse(call: Call<Void>, response: Response<Void>) {
-//                    response.isSuccessful.let {
-//
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<Void>, t: Throwable) {
-//                    call.cancel()
-//                    Util.showToast(this@RecipientHomeScreen, t.localizedMessage)
-//                    Log.v("==TAG==", "DonorHomeScreen.onFailure " + t.localizedMessage)
-//                }
-//            })
+            RestAdapter.requestBlood(requestBloodModel, object : Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    response.isSuccessful.let {
+                        Util.showToast(this@RecipientHomeScreen, "Blood Request Success")
+                    }
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    call.cancel()
+                    Util.showToast(this@RecipientHomeScreen, t.localizedMessage)
+                    Log.v("==TAG==", "RecipientHomeScreen.onFailure " +t.localizedMessage)
+                }
+            })
         }
     }
 
@@ -108,11 +116,11 @@ class RecipientHomeScreen : AppCompatActivity() {
 
         numberOfBags.setNegativeButton("cancel", DialogInterface.OnClickListener { dialog, which -> dialog.dismiss() })
 
-        numberOfBags.setSingleChoiceItems(arrayAdapter, previousAgeSelected, DialogInterface.OnClickListener { dialog, which ->
-            val ageSelected = arrayAdapter.getItem(which)
-            etAge.setText(ageSelected.toString())
-            previousAgeSelected = which
-            etAge.error = null
+        numberOfBags.setSingleChoiceItems(arrayAdapter, previousBagSelected, DialogInterface.OnClickListener { dialog, which ->
+            val numberOfBagsSelected = arrayAdapter.getItem(which)
+            etNumberOfBags.setText(numberOfBagsSelected.toString())
+            previousBagSelected = which
+            etNumberOfBags.error = null
             dialog.dismiss()
         })
 

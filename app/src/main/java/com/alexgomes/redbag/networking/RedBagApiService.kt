@@ -1,6 +1,7 @@
 package com.alexgomes.redbag.networking
 
 import com.alexgomes.redbag.networking.reqest.CreateProfileModel
+import com.alexgomes.redbag.networking.reqest.RequestBloodModel
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -12,5 +13,8 @@ interface RedBagApiService {
 
     @POST("/zeeu3mze")
     fun createUserProfile(@Body profileModel: CreateProfileModel): Call<Void>
+
+    @POST("/zeeu3mze")
+    fun requestBlood(@Body requestBloodModel: RequestBloodModel): Call<Void>
 
 }
