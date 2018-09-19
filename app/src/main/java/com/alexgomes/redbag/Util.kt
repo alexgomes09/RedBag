@@ -30,7 +30,7 @@ enum class BloodGroup(val value: String) {
 class Util {
     companion object {
         val networkTimeOut = 30L
-        val BASE_URL: String = "http://requestbin.fullcontact.com"
+        val BASE_URL: String = "http://localhost:8080"
         val minAgeToDonateBlood = 17
         val maxAgeToDonateBlood = 99
 

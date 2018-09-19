@@ -10,7 +10,7 @@ import com.alexgomes.redbag.BloodGroup
 import com.alexgomes.redbag.R
 import com.alexgomes.redbag.Util
 import com.alexgomes.redbag.networking.RestAdapter
-import com.alexgomes.redbag.networking.reqest.RequestBloodModel
+import com.alexgomes.redbag.networking.reqest.Request_Get_BloodModel
 import kotlinx.android.synthetic.main.activity_recipient_home_screen.*
 import kotlinx.android.synthetic.main.partial_appbar.*
 import retrofit2.Call
@@ -20,7 +20,7 @@ import retrofit2.Response
 /**
  * Created by agomes on 9/16/18.
  */
-class RecipientHomeScreen : AppCompatActivity() {
+class RecipientRequestBloodActivity : AppCompatActivity() {
 
     private var previousBagSelected = 0
     private var previousAgeSelected = 0
@@ -68,7 +68,7 @@ class RecipientHomeScreen : AppCompatActivity() {
                     return@setOnClickListener
                 }
                 etEmail.text.toString().trim().isEmpty() && etPhoneNumber.text.toString().trim().isEmpty() -> {
-                    Util.showToast(this@RecipientHomeScreen, "At least one contact information required")
+                    Util.showToast(this@RecipientRequestBloodActivity, "At least one contact information required")
                     return@setOnClickListener
                 }
                 etEmail.text.toString().trim().isNotEmpty() && !Util.isValidEmail(etEmail.text.toString().trim()) -> {
@@ -78,7 +78,7 @@ class RecipientHomeScreen : AppCompatActivity() {
             }
 
 
-            val requestBloodModel = RequestBloodModel(
+            val requestBloodModel = Request_Get_BloodModel(
                     etName.text.toString(),
                     etAge.text.toString().toInt(),
                     etBloodGroup.toString(),
@@ -92,24 +92,24 @@ class RecipientHomeScreen : AppCompatActivity() {
             RestAdapter.requestBlood(requestBloodModel, object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     response.isSuccessful.let {
-                        Util.showToast(this@RecipientHomeScreen, "Blood Request Success")
+                        Util.showToast(this@RecipientRequestBloodActivity, "Blood Request Success")
                     }
                 }
 
                 override fun onFailure(call: Call<Void>, t: Throwable) {
                     call.cancel()
-                    Util.showToast(this@RecipientHomeScreen, t.localizedMessage)
-                    Log.v("==TAG==", "RecipientHomeScreen.onFailure " +t.localizedMessage)
+                    Util.showToast(this@RecipientRequestBloodActivity, t.localizedMessage)
+                    Log.v("==TAG==", "RecipientRequestBloodActivity.onFailure " +t.localizedMessage)
                 }
             })
         }
     }
 
     private fun showNumberOfBagsDialog() {
-        val numberOfBags = AlertDialog.Builder(this@RecipientHomeScreen)
+        val numberOfBags = AlertDialog.Builder(this@RecipientRequestBloodActivity)
         numberOfBags.setTitle("Amount of blood needed")
 
-        val arrayAdapter = ArrayAdapter<String>(this@RecipientHomeScreen, android.R.layout.simple_list_item_single_choice)
+        val arrayAdapter = ArrayAdapter<String>(this@RecipientRequestBloodActivity, android.R.layout.simple_list_item_single_choice)
         for (bloodBag in 1..12) {
             arrayAdapter.add(resources.getQuantityString(R.plurals.bloodBag, bloodBag, bloodBag))
         }
@@ -128,10 +128,10 @@ class RecipientHomeScreen : AppCompatActivity() {
     }
 
     private fun showAgeDialog() {
-        val ageDialog = AlertDialog.Builder(this@RecipientHomeScreen)
+        val ageDialog = AlertDialog.Builder(this@RecipientRequestBloodActivity)
         ageDialog.setTitle("Select Patient Age")
 
-        val arrayAdapter = ArrayAdapter<Int>(this@RecipientHomeScreen, android.R.layout.simple_list_item_single_choice)
+        val arrayAdapter = ArrayAdapter<Int>(this@RecipientRequestBloodActivity, android.R.layout.simple_list_item_single_choice)
         for (age in Util.minAgeToDonateBlood..Util.maxAgeToDonateBlood) {
             arrayAdapter.add(age)
         }
@@ -150,10 +150,10 @@ class RecipientHomeScreen : AppCompatActivity() {
     }
 
     private fun showBloodGroupDialog() {
-        val bloodGroupDialog = AlertDialog.Builder(this@RecipientHomeScreen)
+        val bloodGroupDialog = AlertDialog.Builder(this@RecipientRequestBloodActivity)
         bloodGroupDialog.setTitle("Select Patient Blood Group")
 
-        val arrayAdapter = ArrayAdapter<String>(this@RecipientHomeScreen, android.R.layout.simple_list_item_single_choice)
+        val arrayAdapter = ArrayAdapter<String>(this@RecipientRequestBloodActivity, android.R.layout.simple_list_item_single_choice)
 
         enumValues<BloodGroup>().forEach { arrayAdapter.add(it.value) }
 

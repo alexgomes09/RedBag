@@ -1,6 +1,7 @@
 package com.alexgomes.redbag.activity
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.ArrayAdapter
 import com.alexgomes.redbag.BloodGroup
+import com.alexgomes.redbag.PrefUtil
 import com.alexgomes.redbag.R
 import com.alexgomes.redbag.Util
 import com.alexgomes.redbag.networking.RestAdapter
@@ -82,6 +84,9 @@ class DonorCreateProfileActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     response.isSuccessful.let {
                         Util.showToast(this@DonorCreateProfileActivity, "Create Profile Success")
+                        PrefUtil.putBoolean(PrefUtil.USER_CREATED_DONOR_PROFILE,true)
+                        startActivity(Intent(this@DonorCreateProfileActivity,BloodRequestListActivity::class.java))
+                        finish()
                     }
                 }
 

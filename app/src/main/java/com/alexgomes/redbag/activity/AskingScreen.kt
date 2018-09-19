@@ -19,17 +19,17 @@ class AskingScreen : AppCompatActivity() {
         btnDonor.setOnClickListener({
 
             if (PrefUtil.getBoolean(PrefUtil.USER_CREATED_DONOR_PROFILE, false)) {
-                // go to recipient post list
+                startActivity(Intent(this@AskingScreen, BloodRequestListActivity::class.java))
             } else {
-                startActivity(Intent(AskingScreen@this,DonorCreateProfileActivity::class.java))
+                startActivity(Intent(this@AskingScreen, DonorCreateProfileActivity::class.java))
             }
 
-            overridePendingTransition(R.anim.slide_in_right,R.anim.scale_out)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.scale_out)
         })
 
         btnRecipient.setOnClickListener({
-            startActivity(Intent(AskingScreen@this,RecipientHomeScreen::class.java))
-            overridePendingTransition(R.anim.slide_in_right,R.anim.scale_out)
+            startActivity(Intent(AskingScreen@ this, RecipientRequestBloodActivity::class.java))
+            overridePendingTransition(R.anim.slide_in_right, R.anim.scale_out)
         })
     }
 }

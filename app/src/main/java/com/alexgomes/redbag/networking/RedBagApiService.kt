@@ -1,9 +1,10 @@
 package com.alexgomes.redbag.networking
 
 import com.alexgomes.redbag.networking.reqest.CreateProfileModel
-import com.alexgomes.redbag.networking.reqest.RequestBloodModel
+import com.alexgomes.redbag.networking.reqest.Request_Get_BloodModel
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 /**
@@ -11,10 +12,15 @@ import retrofit2.http.POST
  */
 interface RedBagApiService {
 
-    @POST("/1nvea091")
+    @POST("/createProfile")
     fun createUserProfile(@Body profileModel: CreateProfileModel): Call<Void>
 
-    @POST("/1nvea091")
-    fun requestBlood(@Body requestBloodModel: RequestBloodModel): Call<Void>
+    @POST("/postBloodRequest")
+    fun requestBlood(@Body requestGetBloodModel: Request_Get_BloodModel): Call<Void>
+
+    @GET("/getBloodRequest")
+    fun getBloodRequest(@Body requestGetBloodModel: Request_Get_BloodModel): Call<Void>
+
+
 
 }
