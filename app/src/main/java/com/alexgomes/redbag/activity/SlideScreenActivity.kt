@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.alexgomes.redbag.PrefUtil
 import com.alexgomes.redbag.R
 import kotlinx.android.synthetic.main.activity_slide_screen.*
 
@@ -25,18 +26,19 @@ class SlideScreenActivity : AppCompatActivity() {
         viewPager.adapter = SliderAdapter()
 
         btnSkip.setOnClickListener {
-            val askingScreen = Intent(SlideScreenActivity@this,AskingScreen::class.java)
+            val askingScreen = Intent(SlideScreenActivity@ this, AskingScreen::class.java)
             startActivity(askingScreen)
             finish()
-            overridePendingTransition(R.anim.slide_in_right,R.anim.scale_out)
+            PrefUtil.putBoolean(PrefUtil.USER_FINISHED_ONBOARDING, true)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.scale_out)
         }
     }
 
 
-    inner class SliderAdapter : PagerAdapter(){
+    inner class SliderAdapter : PagerAdapter() {
 
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
-            val view = LayoutInflater.from(this@SlideScreenActivity).inflate(R.layout.view_pager_slider,container,false)
+            val view = LayoutInflater.from(this@SlideScreenActivity).inflate(R.layout.view_pager_slider, container, false)
             view.findViewById<ImageView>(R.id.image).setImageResource(listOfDrawable[position])
             container.addView(view)
             return view

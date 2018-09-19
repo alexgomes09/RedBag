@@ -28,7 +28,7 @@
             android:name=".activity.AskingScreen"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.DonorHomeScreen"
+            android:name=".activity.DonorCreateProfileActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.RecipientHomeScreen"

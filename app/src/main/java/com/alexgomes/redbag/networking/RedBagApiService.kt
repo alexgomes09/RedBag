@@ -11,10 +11,10 @@ import retrofit2.http.POST
  */
 interface RedBagApiService {
 
-    @POST("/zeeu3mze")
+    @POST("/1nvea091")
     fun createUserProfile(@Body profileModel: CreateProfileModel): Call<Void>
 
-    @POST("/zeeu3mze")
+    @POST("/1nvea091")
     fun requestBlood(@Body requestBloodModel: RequestBloodModel): Call<Void>
 
 }

@@ -58,12 +58,6 @@ class Util {
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
 
-        fun showSoftKeyboard(view: View) {
-            val inputMethodManager = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            view.requestFocus()
-            inputMethodManager.showSoftInput(view, 0)
-        }
-
         fun getAndroidUniqueId(): String {
             val androidId = Settings.Secure.getString(RedBagApplication.applicationContext().contentResolver, Settings.Secure.ANDROID_ID)
             return androidId

@@ -3,6 +3,7 @@ package com.alexgomes.redbag.activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.alexgomes.redbag.PrefUtil
 import com.alexgomes.redbag.R
 import kotlinx.android.synthetic.main.activity_asking.*
 
@@ -16,7 +17,13 @@ class AskingScreen : AppCompatActivity() {
         setContentView(R.layout.activity_asking)
 
         btnDonor.setOnClickListener({
-            startActivity(Intent(AskingScreen@this,DonorHomeScreen::class.java))
+
+            if (PrefUtil.getBoolean(PrefUtil.USER_CREATED_DONOR_PROFILE, false)) {
+                // go to recipient post list
+            } else {
+                startActivity(Intent(AskingScreen@this,DonorCreateProfileActivity::class.java))
+            }
+
             overridePendingTransition(R.anim.slide_in_right,R.anim.scale_out)
         })
 

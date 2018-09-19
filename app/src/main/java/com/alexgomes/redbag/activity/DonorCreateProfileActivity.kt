@@ -22,7 +22,7 @@ import retrofit2.Response
 /**
  * Created by agomes on 9/12/18.
  */
-class DonorHomeScreen : AppCompatActivity() {
+class DonorCreateProfileActivity : AppCompatActivity() {
 
     private var previousAgeSelected = 0
     private var previousBloodGroupSelected = 0
@@ -60,7 +60,7 @@ class DonorHomeScreen : AppCompatActivity() {
                     return@setOnClickListener
                 }
                 TextUtils.isEmpty(etEmail.text.toString().trim()) && TextUtils.isEmpty(etPhoneNumber.text.toString().trim()) -> {
-                    Util.showToast(this@DonorHomeScreen, "At least one contact information required")
+                    Util.showToast(this@DonorCreateProfileActivity, "At least one contact information required")
                     return@setOnClickListener
                 }
                 !TextUtils.isEmpty(etEmail.text.toString()) && !Util.isValidEmail(etEmail.text.toString()) -> {
@@ -68,7 +68,6 @@ class DonorHomeScreen : AppCompatActivity() {
                     return@setOnClickListener
                 }
             }
-
 
             val profileModel = CreateProfileModel(
                     Util.getAndroidUniqueId(),
@@ -79,18 +78,17 @@ class DonorHomeScreen : AppCompatActivity() {
                     etEmail.text.toString()
             )
 
-
             RestAdapter.createUserProfile(profileModel, object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     response.isSuccessful.let {
-                        Util.showToast(this@DonorHomeScreen, "Create Profile Success")
+                        Util.showToast(this@DonorCreateProfileActivity, "Create Profile Success")
                     }
                 }
 
                 override fun onFailure(call: Call<Void>, t: Throwable) {
                     call.cancel()
-                    Util.showToast(this@DonorHomeScreen, t.localizedMessage)
-                    Log.v("==TAG==", "DonorHomeScreen.onFailure " + t.localizedMessage)
+                    Util.showToast(this@DonorCreateProfileActivity, t.localizedMessage)
+                    Log.v("==TAG==", "DonorCreateProfileActivity.onFailure " + t.localizedMessage)
                 }
             })
         }
@@ -99,10 +97,10 @@ class DonorHomeScreen : AppCompatActivity() {
 
 
     private fun showAgeDialog() {
-        val ageDialog = AlertDialog.Builder(this@DonorHomeScreen)
+        val ageDialog = AlertDialog.Builder(this@DonorCreateProfileActivity)
         ageDialog.setTitle("Select Your Age")
 
-        val arrayAdapter = ArrayAdapter<Int>(this@DonorHomeScreen, android.R.layout.simple_list_item_single_choice)
+        val arrayAdapter = ArrayAdapter<Int>(this@DonorCreateProfileActivity, android.R.layout.simple_list_item_single_choice)
         for (age in Util.minAgeToDonateBlood..Util.maxAgeToDonateBlood) {
             arrayAdapter.add(age)
         }
@@ -121,10 +119,10 @@ class DonorHomeScreen : AppCompatActivity() {
     }
 
     private fun showBloodGroupDialog() {
-        val bloodGroupDialog = AlertDialog.Builder(this@DonorHomeScreen)
+        val bloodGroupDialog = AlertDialog.Builder(this@DonorCreateProfileActivity)
         bloodGroupDialog.setTitle("Select Your Blood Group")
 
-        val arrayAdapter = ArrayAdapter<String>(this@DonorHomeScreen, android.R.layout.simple_list_item_single_choice)
+        val arrayAdapter = ArrayAdapter<String>(this@DonorCreateProfileActivity, android.R.layout.simple_list_item_single_choice)
 
         enumValues<BloodGroup>().forEach { arrayAdapter.add(it.value) }
 
