@@ -85,7 +85,7 @@ class RecipientRequestBloodActivity : AppCompatActivity() {
                     previousBagSelected,
                     etAddress.text.toString(),
                     etPhoneNumber.text.toString(),
-                    etEmail.text.toString()
+                    etEmail.text.toString(),""
             )
 
 

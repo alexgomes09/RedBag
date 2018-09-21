@@ -3,23 +3,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:background="@drawable/row_background"
+    android:layout_height="80dp">
 
     <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
         android:paddingLeft="16dp"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        app:custom_font="@string/font_bold"
+        android:includeFontPadding="false"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintBottom_toTopOf="@+id/tvNumberOfBags"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/app_name" />
 
     <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/tvNumberOfBags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:includeFontPadding="false"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        app:layout_constraintBottom_toTopOf="@id/tvPosted"
+        tools:text="3 Bags required" />
+
+    <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/tvPosted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:includeFontPadding="false"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@+id/tvNumberOfBags"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Posted: 23 Aug 2018" />
+
+    <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/tvBloodGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:background="@color/bloodRed"
         android:includeFontPadding="false"
         android:padding="16dp"
+        android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="30sp"
+        app:left_edge_round="@dimen/rounded_corner"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="B+" />
 </android.support.constraint.ConstraintLayout>

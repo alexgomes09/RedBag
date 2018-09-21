@@ -54,7 +54,7 @@ function postRoutes(app) {
 
 
 
-    app.post('/getBloodRequest', function(req, res) {
+    app.get('/getBloodRequest', function(req, res) {
         console.log('/getBloodRequest');
 
         var query = {}

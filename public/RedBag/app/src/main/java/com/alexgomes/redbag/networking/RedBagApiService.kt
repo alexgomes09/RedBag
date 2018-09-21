@@ -19,7 +19,7 @@ interface RedBagApiService {
     fun requestBlood(@Body requestGetBloodModel: Request_Get_BloodModel): Call<Void>
 
     @GET("/getBloodRequest")
-    fun getBloodRequest(@Body requestGetBloodModel: Request_Get_BloodModel): Call<Void>
+    fun getBloodRequest(): Call<Request_Get_BloodModel>
 
 
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.alexgomes.redbag.custom.CustomTextView
+s    <com.alexgomes.redbag.custom.CustomTextView
         android:id="@+id/t1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

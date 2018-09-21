@@ -5,6 +5,7 @@
 
     <declare-styleable name="CustomTextView">
         <attr name="custom_font"/>
+        <attr name="left_edge_round" format="reference|dimension"/>
     </declare-styleable>
 
     <declare-styleable name="CustomButton">
