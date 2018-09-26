@@ -46,7 +46,7 @@ object RestAdapter {
         redBagApiService.createUserProfile(profileModel).enqueue(onResponseListener)
     }
 
-    fun requestBlood(requestGetBloodModel: Request_Get_BloodModel, onResponseListener: Callback<Void>) {
+    fun requestBlood(requestGetBloodModel: Request_Get_BloodModel.Posts, onResponseListener: Callback<Void>) {
         //we check internet connection before making every network call
         if (!Util.checkForInternet(RedBagApplication.applicationContext())) return
         redBagApiService.requestBlood(requestGetBloodModel).enqueue(onResponseListener)

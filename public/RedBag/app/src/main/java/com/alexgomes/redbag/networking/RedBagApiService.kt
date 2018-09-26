@@ -16,7 +16,7 @@ interface RedBagApiService {
     fun createUserProfile(@Body profileModel: CreateProfileModel): Call<Void>
 
     @POST("/postBloodRequest")
-    fun requestBlood(@Body requestGetBloodModel: Request_Get_BloodModel): Call<Void>
+    fun requestBlood(@Body requestGetBloodModel: Request_Get_BloodModel.Posts): Call<Void>
 
     @GET("/getBloodRequest")
     fun getBloodRequest(): Call<Request_Get_BloodModel>

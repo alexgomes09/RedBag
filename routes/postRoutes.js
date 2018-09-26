@@ -11,16 +11,16 @@ function postRoutes(app) {
         var bloodGroup = app.trimString(req.body.bloodGroup)
 
         if (!bloodGroup) {
-            return res.status(202).send({
+            return res.status(401).send({
                 success: false,
                 message: "Please provide blood type"
             })
         }
 
         if (!Post.schema.path('bloodGroup').enumValues.includes(bloodGroup)) {
-            return res.status(202).send({
+            return res.status(401).send({
                 success: false,
-                message: "Blood type doesn't exist"
+                message: "Blood group doesn't exist"
             })
         }
 
@@ -28,12 +28,11 @@ function postRoutes(app) {
         var newPost = new Post();
         newPost.bloodGroup = bloodGroup;
         newPost.numberOfBags = req.body.numberOfBags;
-        newPost.contactNumber = req.body.contactNumber;
+        newPost.phoneNumber = req.body.phoneNumber;
         newPost.name = app.trimString(req.body.name);
         newPost.address = app.trimString(req.body.address);
-        newPost.contactEmail = req.body.contactEmail;
-        newPost.city = app.trimString(req.body.city);
-        newPost.ageOfPatient = req.body.ageOfPatient;
+        newPost.email = req.body.email;
+        newPost.age = req.body.age;
 
         newPost.save(function(err, post) {
             if (err) {
@@ -58,9 +57,6 @@ function postRoutes(app) {
         console.log('/getBloodRequest');
 
         var query = {}
-
-
-        console.log(req);
 
 
         if (req.query.bloodGroup) {

@@ -78,10 +78,10 @@ class RecipientRequestBloodActivity : AppCompatActivity() {
             }
 
 
-            val requestBloodModel = Request_Get_BloodModel(
+            val requestBloodModel = Request_Get_BloodModel.Posts(
                     etName.text.toString(),
                     etAge.text.toString().toInt(),
-                    etBloodGroup.toString(),
+                    etBloodGroup.text.toString(),
                     previousBagSelected,
                     etAddress.text.toString(),
                     etPhoneNumber.text.toString(),

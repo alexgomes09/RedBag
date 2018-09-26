@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@drawable/row_background"
-    android:layout_height="80dp">
+    android:layout_height="90dp">
 
     <com.alexgomes.redbag.custom.CustomTextView
         android:id="@+id/tvName"
@@ -37,18 +37,17 @@
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"
         android:includeFontPadding="false"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="#8c8c8c"
         app:layout_constraintTop_toBottomOf="@+id/tvNumberOfBags"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="Posted: 23 Aug 2018" />
 
     <com.alexgomes.redbag.custom.CustomTextView
         android:id="@+id/tvBloodGroup"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="0dp"
         android:background="@color/bloodRed"
         android:includeFontPadding="false"
-        android:padding="16dp"
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="30sp"
@@ -56,5 +55,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="B+" />
+        tools:text="AB+" />
 </android.support.constraint.ConstraintLayout>

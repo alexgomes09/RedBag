@@ -9,20 +9,19 @@ class Request_Get_BloodModel {
 
     val success: String = ""
     val message: String = ""
-    val posts = mutableListOf<Posts>()
+    val posts: MutableList<Posts> = mutableListOf()
 
-    class Posts{
-        lateinit var name: String
-        lateinit var age: Integer
-        lateinit var bloodGroup: String
-        lateinit var numberOfBags: Integer
-        lateinit var address: String
-        lateinit var phoneNumber: String
-        lateinit var email: String
-        @SerializedName("created_at")
-        lateinit var posted: String
-    }
-
+    class Posts(
+            var name: String,
+            var age: Int,
+            var bloodGroup: String,
+            var numberOfBags: Int,
+            var address: String,
+            var phoneNumber: String,
+            var email: String,
+            @SerializedName("created_at")
+            var postedTime: String
+    )
 
 
 }

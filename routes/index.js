@@ -3,11 +3,11 @@
 console.log("Router initialized");
 
 var postRoutes = require('./postRoutes');
-var userRoutes = require('./userRoutes');
+var donorRoutes = require('./donorRoutes');
 
 function routes(app) {
     postRoutes(app);
-    userRoutes(app);
+    donorRoutes(app);
 }
 
 module.exports = routes;
