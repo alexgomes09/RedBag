@@ -29,10 +29,11 @@ enum class BloodGroup(val value: String) {
 
 class Util {
     companion object {
-        val networkTimeOut = 30L
-        val BASE_URL: String = "http://localhost:8080"
-        val minAgeToDonateBlood = 17
-        val maxAgeToDonateBlood = 99
+        const val MAX_RESPONSE_LIMIT = 30
+        const val networkTimeOut = 30L
+        const val BASE_URL: String = "http://localhost:8080"
+        const val minAgeToDonateBlood = 17
+        const val maxAgeToDonateBlood = 99
 
         fun checkForInternet(context: Context): Boolean {
             fun hasNetworkConnectivity(context: Context): Boolean {

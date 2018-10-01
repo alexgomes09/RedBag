@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.alexgomes.redbag.R
 import com.alexgomes.redbag.Util
 import com.alexgomes.redbag.custom.CustomTextView
+import com.alexgomes.redbag.custom.EndlessRecyclerViewScrollListener
 import com.alexgomes.redbag.dp
 import com.alexgomes.redbag.networking.RestAdapter
 import com.alexgomes.redbag.networking.reqest.Request_Get_BloodModel
@@ -30,7 +32,8 @@ import java.util.*
 class BloodRequestListActivity : AppCompatActivity() {
 
     private lateinit var adapter: RecipientListAdapter
-    var listOfBloodPost: MutableList<Request_Get_BloodModel.Posts> = mutableListOf()
+    private val body = hashMapOf<String, String>()
+    private var listOfBloodPost: MutableList<Request_Get_BloodModel.Posts> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,11 +44,28 @@ class BloodRequestListActivity : AppCompatActivity() {
         rvList.adapter = adapter
         rvList.addItemDecoration(SpacingAroundCell(16.dp))
 
-        RestAdapter.getBloodRequest(object : Callback<Request_Get_BloodModel> {
+        getBloodRequest(0)
+
+        rvList.addOnScrollListener(object : EndlessRecyclerViewScrollListener(rvList.layoutManager as LinearLayoutManager) {
+            override fun onLoadMore(totalItemsCount: Int, view: RecyclerView?) {
+
+                getBloodRequest(totalItemsCount)
+                Log.v("==TAG==", "BloodRequestListActivity.onLoadMore " + totalItemsCount)
+            }
+        })
+
+
+    }
+
+    fun getBloodRequest(amountToSkip: Int) {
+
+//        body.put("skip", amountToSkip.toString())
+
+        RestAdapter.getBloodRequest(body, object : Callback<Request_Get_BloodModel> {
             override fun onResponse(call: Call<Request_Get_BloodModel>, response: Response<Request_Get_BloodModel>) {
                 if (response.isSuccessful) {
                     listOfBloodPost.addAll(response.body()!!.posts)
-                    adapter.notifyDataSetChanged()
+                    adapter.notifyItemInserted(listOfBloodPost.size)
                 }
             }
 
@@ -55,6 +75,7 @@ class BloodRequestListActivity : AppCompatActivity() {
 
         })
     }
+
 
     override fun onBackPressed() {
         super.onBackPressed()
@@ -69,7 +90,7 @@ class BloodRequestListActivity : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: RecipientViewHolder, position: Int) {
-            holder.tvName.text = listOfBloodPost[position].name
+            holder.tvName.text = position.toString() +" "+listOfBloodPost[position].name
             holder.tvNumberOfBags.text = "${listOfBloodPost[position].numberOfBags} bags"
             holder.tvPosted.text = "Posted: ${convertServerTimeToDisplayFormat(listOfBloodPost[position].postedTime)}"
             holder.tvBloodGroup.text = listOfBloodPost[position].bloodGroup
@@ -86,7 +107,7 @@ class BloodRequestListActivity : AppCompatActivity() {
             }
 
             val originalFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-            val targetFormat = SimpleDateFormat("EEE, MMM dd yyyy HH:mm")
+            val targetFormat = SimpleDateFormat("EEE, MMM dd yyyy hh:mm a")
             var originalDate: Date? = null
             try {
                 originalDate = originalFormat.parse(time)

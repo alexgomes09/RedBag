@@ -52,32 +52,49 @@ function postRoutes(app) {
     });
 
 
-
-    app.get('/getBloodRequest', function(req, res) {
+    app.post('/getBloodRequest', function(req, res) {
         console.log('/getBloodRequest');
 
-        var query = {}
+        var skip = 0;
 
+        var query = {
+
+        }
+        var sort = {
+            // "updated_at":"asc"
+        }
 
         if (req.query.bloodGroup) {
             query.bloodGroup = req.query.bloodGroup;
         }
 
-        Post.find(query).exec(function(err, posts) {
-            if (err) {
-                res.status(401).send({
-                    success: false,
-                    message: "Error retrieving all blood request:",
-                    err: err
-                })
-            } else {
-                res.status(200).send({
-                    success: true,
-                    message: "",
-                    posts: posts
-                })
-            }
-        })
+
+        // check if skip is number
+        if (/^\d+$/.test(req.query.skip)) {
+            skip = Number(req.query.skip)
+        }
+
+
+        Post
+            .find(query)
+            .sort(sort)
+            .limit(20)
+            .skip(skip)
+            .exec(function(err, posts) {
+                if (err) {
+                    res.status(401).send({
+                        success: false,
+                        message: "Error retrieving all blood request:",
+                        err: err
+                    })
+                } else {
+                    res.status(200).send({
+                        success: true,
+                        message: "",
+                        posts: posts
+                    })
+                }
+            })
     })
 }
 
