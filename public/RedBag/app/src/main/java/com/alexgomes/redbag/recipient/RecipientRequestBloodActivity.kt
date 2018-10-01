@@ -1,4 +1,4 @@
-package com.alexgomes.redbag.activity
+package com.alexgomes.redbag.recipient
 
 import android.content.DialogInterface
 import android.os.Bundle

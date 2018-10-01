@@ -1,7 +1,8 @@
-package com.alexgomes.redbag.activity
+package com.alexgomes.redbag.donor
 
 import android.graphics.Rect
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -17,6 +18,7 @@ import com.alexgomes.redbag.dp
 import com.alexgomes.redbag.networking.RestAdapter
 import com.alexgomes.redbag.networking.reqest.Request_Get_BloodModel
 import kotlinx.android.synthetic.main.activity_blood_request_list.*
+import kotlinx.android.synthetic.main.partial_appbar.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,6 +41,7 @@ class BloodRequestListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_blood_request_list)
 
+        btn_topbar_right.visibility = View.VISIBLE
         adapter = RecipientListAdapter()
         rvList.layoutManager = LinearLayoutManager(this@BloodRequestListActivity)
         rvList.adapter = adapter
@@ -48,18 +51,24 @@ class BloodRequestListActivity : AppCompatActivity() {
 
         rvList.addOnScrollListener(object : EndlessRecyclerViewScrollListener(rvList.layoutManager as LinearLayoutManager) {
             override fun onLoadMore(totalItemsCount: Int, view: RecyclerView?) {
-
                 getBloodRequest(totalItemsCount)
-                Log.v("==TAG==", "BloodRequestListActivity.onLoadMore " + totalItemsCount)
             }
         })
 
+        swipeRefreshLayout.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
+            override fun onRefresh() {
+                getBloodRequest(0)
+            }
+        })
 
+        btn_topbar_right.setOnClickListener {
+            Log.v("==TAG==", "BloodRequestListActivity.onCreate take me to filter screen")
+        }
     }
 
     fun getBloodRequest(amountToSkip: Int) {
 
-//        body.put("skip", amountToSkip.toString())
+        body["skip"] = amountToSkip.toString()
 
         RestAdapter.getBloodRequest(body, object : Callback<Request_Get_BloodModel> {
             override fun onResponse(call: Call<Request_Get_BloodModel>, response: Response<Request_Get_BloodModel>) {

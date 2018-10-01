@@ -1,4 +1,4 @@
-package com.alexgomes.redbag.activity
+package com.alexgomes.redbag.donor
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -85,7 +85,7 @@ class DonorCreateProfileActivity : AppCompatActivity() {
                     response.isSuccessful.let {
                         Util.showToast(this@DonorCreateProfileActivity, "Create Profile Success")
                         PrefUtil.putBoolean(PrefUtil.USER_CREATED_DONOR_PROFILE,true)
-                        startActivity(Intent(this@DonorCreateProfileActivity,BloodRequestListActivity::class.java))
+                        startActivity(Intent(this@DonorCreateProfileActivity, BloodRequestListActivity::class.java))
                         finish()
                     }
                 }

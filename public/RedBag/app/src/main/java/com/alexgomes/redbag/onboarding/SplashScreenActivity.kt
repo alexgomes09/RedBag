@@ -1,4 +1,4 @@
-package com.alexgomes.redbag.activity
+package com.alexgomes.redbag.onboarding
 
 import android.content.Intent
 import android.os.Bundle

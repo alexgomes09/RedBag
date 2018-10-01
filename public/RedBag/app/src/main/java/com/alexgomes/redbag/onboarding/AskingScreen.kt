@@ -1,10 +1,13 @@
-package com.alexgomes.redbag.activity
+package com.alexgomes.redbag.onboarding
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.alexgomes.redbag.PrefUtil
 import com.alexgomes.redbag.R
+import com.alexgomes.redbag.donor.BloodRequestListActivity
+import com.alexgomes.redbag.donor.DonorCreateProfileActivity
+import com.alexgomes.redbag.recipient.RecipientRequestBloodActivity
 import kotlinx.android.synthetic.main.activity_asking.*
 
 /**
