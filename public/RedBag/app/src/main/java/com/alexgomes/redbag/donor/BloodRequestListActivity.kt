@@ -81,7 +81,6 @@ class BloodRequestListActivity : AppCompatActivity() {
             override fun onFailure(call: Call<Request_Get_BloodModel>?, t: Throwable?) {
                 Util.showToast(this@BloodRequestListActivity, "Error retrieving data")
             }
-
         })
     }
 
