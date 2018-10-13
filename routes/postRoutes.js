@@ -61,7 +61,7 @@ function postRoutes(app) {
 
         }
         var sort = {
-            "updated_at":"asc"
+            "updated_at":"desc" //recent to old
         }
 
         if (req.query.bloodGroup) {
