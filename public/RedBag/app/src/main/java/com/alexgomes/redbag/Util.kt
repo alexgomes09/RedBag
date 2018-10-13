@@ -31,7 +31,7 @@ class Util {
     companion object {
         const val MAX_RESPONSE_LIMIT = 30
         const val networkTimeOut = 30L
-        const val BASE_URL: String = "http://localhost:8080"
+        const val BASE_URL: String = "https://red-bag.herokuapp.com/"
         const val minAgeToDonateBlood = 17
         const val maxAgeToDonateBlood = 99
 

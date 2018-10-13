@@ -11,7 +11,7 @@ import com.alexgomes.redbag.R
 import com.alexgomes.redbag.Util
 import com.alexgomes.redbag.networking.RestAdapter
 import com.alexgomes.redbag.networking.reqest.Request_Get_BloodModel
-import kotlinx.android.synthetic.main.activity_recipient_home_screen.*
+import kotlinx.android.synthetic.main.activity_recipient_request_blood.*
 import kotlinx.android.synthetic.main.partial_appbar.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,7 +28,7 @@ class RecipientRequestBloodActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_recipient_home_screen)
+        setContentView(R.layout.activity_recipient_request_blood)
 
         appbar_title.text = "Request blood"
 

@@ -19,6 +19,7 @@ import com.alexgomes.redbag.networking.RestAdapter
 import com.alexgomes.redbag.networking.reqest.Request_Get_BloodModel
 import kotlinx.android.synthetic.main.activity_blood_request_list.*
 import kotlinx.android.synthetic.main.partial_appbar.*
+import kotlinx.android.synthetic.main.partial_loading_screen.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,7 +31,6 @@ import java.util.*
  * Created by agomes on 9/18/18.
  * Donor's see this screen if donor created profile or not
  */
-
 class BloodRequestListActivity : AppCompatActivity() {
 
     private lateinit var adapter: RecipientListAdapter
@@ -51,12 +51,15 @@ class BloodRequestListActivity : AppCompatActivity() {
 
         rvList.addOnScrollListener(object : EndlessRecyclerViewScrollListener(rvList.layoutManager as LinearLayoutManager) {
             override fun onLoadMore(totalItemsCount: Int, view: RecyclerView?) {
-                getBloodRequest(totalItemsCount)
+                getBloodRequest(listOfBloodPost.size)
             }
         })
 
         swipeRefreshLayout.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
             override fun onRefresh() {
+                loading.visibility = View.VISIBLE
+                listOfBloodPost.clear()
+                adapter.notifyDataSetChanged()
                 getBloodRequest(0)
             }
         })
@@ -67,11 +70,13 @@ class BloodRequestListActivity : AppCompatActivity() {
     }
 
     fun getBloodRequest(amountToSkip: Int) {
-
         body["skip"] = amountToSkip.toString()
 
         RestAdapter.getBloodRequest(body, object : Callback<Request_Get_BloodModel> {
             override fun onResponse(call: Call<Request_Get_BloodModel>, response: Response<Request_Get_BloodModel>) {
+                loading.visibility = View.GONE
+                swipeRefreshLayout.isRefreshing = false;
+
                 if (response.isSuccessful) {
                     listOfBloodPost.addAll(response.body()!!.posts)
                     adapter.notifyItemInserted(listOfBloodPost.size)
@@ -79,6 +84,8 @@ class BloodRequestListActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<Request_Get_BloodModel>?, t: Throwable?) {
+                loading.visibility = View.GONE
+                swipeRefreshLayout.isRefreshing = false
                 Util.showToast(this@BloodRequestListActivity, "Error retrieving data")
             }
         })
@@ -98,7 +105,7 @@ class BloodRequestListActivity : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: RecipientViewHolder, position: Int) {
-            holder.tvName.text = position.toString() +" "+listOfBloodPost[position].name
+            holder.tvName.text = listOfBloodPost[position].name
             holder.tvNumberOfBags.text = "${listOfBloodPost[position].numberOfBags} bags"
             holder.tvPosted.text = "Posted: ${convertServerTimeToDisplayFormat(listOfBloodPost[position].postedTime)}"
             holder.tvBloodGroup.text = listOfBloodPost[position].bloodGroup
