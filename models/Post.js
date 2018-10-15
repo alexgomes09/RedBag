@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var postSchema = ne135 Flora Drive, Toronto, ONw Schema({
+var postSchema = new Schema({
     bloodGroup: {
         type: String,
         enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
