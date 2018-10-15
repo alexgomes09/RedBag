@@ -19,7 +19,7 @@ interface RedBagApiService {
     fun requestBlood(@Body requestGetBloodModel: Request_Get_BloodModel.Posts): Call<Void>
 
     @POST("/getBloodRequest")
-    fun getBloodRequest(@QueryMap body: HashMap<String,String>): Call<Request_Get_BloodModel>
+    fun getBloodRequest(@QueryMap body: HashMap<String, Any>): Call<Request_Get_BloodModel>
 
 
 }

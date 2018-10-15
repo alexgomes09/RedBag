@@ -12,7 +12,7 @@ import com.alexgomes.redbag.R
 /**
  * Created by agomes on 9/8/18.
  */
-class CustomTextView : AppCompatTextView {
+open class CustomTextView : AppCompatTextView {
 
     private lateinit var fontMap: Map<String, Typeface>
 
@@ -35,10 +35,10 @@ class CustomTextView : AppCompatTextView {
         val leftEdgeRound = typedArray.getDimension(R.styleable.CustomTextView_left_edge_round,0f)
         typedArray.recycle()
 
-        typeface = if (fontName != null) {
-            FontManager.getFont(context, fontName)
+        if (fontName != null) {
+            typeface = FontManager.getFont(context, fontName)
         } else {
-            FontManager.getFont(context, context.getString(R.string.font_regular))
+            typeface = FontManager.getFont(context, context.getString(R.string.font_regular))
         }
 
         (leftEdgeRound > 0).let{
@@ -51,6 +51,5 @@ class CustomTextView : AppCompatTextView {
 
             background = drawable
         }
-
     }
 }

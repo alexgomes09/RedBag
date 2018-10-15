@@ -34,7 +34,7 @@ import java.util.*
 class BloodRequestListActivity : AppCompatActivity() {
 
     private lateinit var adapter: RecipientListAdapter
-    private val body = hashMapOf<String, String>()
+    private val body = hashMapOf<String, Any>()
     private var listOfBloodPost: MutableList<Request_Get_BloodModel.Posts> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,12 +65,17 @@ class BloodRequestListActivity : AppCompatActivity() {
         })
 
         btn_topbar_right.setOnClickListener {
-            Log.v("==TAG==", "BloodRequestListActivity.onCreate take me to filter screen")
+            supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right,R.anim.slide_in_right,R.anim.slide_out_right)
+                    .replace(android.R.id.content, FilterFragment.newInstance())
+                    .addToBackStack(null)
+                    .commit()
         }
     }
 
     fun getBloodRequest(amountToSkip: Int) {
         body["skip"] = amountToSkip.toString()
+        body["bloodGroup"] = mutableListOf("A+","B+")
 
         RestAdapter.getBloodRequest(body, object : Callback<Request_Get_BloodModel> {
             override fun onResponse(call: Call<Request_Get_BloodModel>, response: Response<Request_Get_BloodModel>) {

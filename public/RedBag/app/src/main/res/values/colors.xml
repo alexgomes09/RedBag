@@ -5,6 +5,7 @@
     <color name="errorBackground">#fde6e6</color>
     <color name="light_gray">#e3e3e3</color>
 
-    <color name="transparent">#CCffffff</color>
+    <color name="transparent_white_80">#CCffffff</color>
+    <color name="transparent_black_70">#B3000000</color>
 
 </resources>

@@ -15,4 +15,8 @@
     <declare-styleable name="CustomEditText">
         <attr name="custom_font"/>
     </declare-styleable>
+
+    <declare-styleable name="BubbleFilterTextView">
+        <attr name="bubble_radius" format="dimension"/>
+    </declare-styleable>
 </resources>

@@ -10,6 +10,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -52,7 +53,7 @@ object RestAdapter {
         redBagApiService.requestBlood(requestGetBloodModel).enqueue(onResponseListener)
     }
 
-    fun getBloodRequest(body: HashMap<String,String>,onResponseListener: Callback<Request_Get_BloodModel>) {
+    fun getBloodRequest(body: HashMap<String, Any>, onResponseListener: Callback<Request_Get_BloodModel>) {
         //we check internet connection before making every network call
         if (!Util.checkForInternet(RedBagApplication.applicationContext())) return
         redBagApiService.getBloodRequest(body).enqueue(onResponseListener)

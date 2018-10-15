@@ -9,7 +9,7 @@ import android.graphics.Typeface
  */
 class FontManager{
     companion object{
-        var fontMap = hashMapOf<String,Typeface>()
+        private var fontMap = hashMapOf<String,Typeface>()
 
         fun getFont(context: Context, fontName: String): Typeface? {
             return if (fontMap.containsKey(fontName)) {
@@ -19,8 +19,6 @@ class FontManager{
                 fontMap[fontName] = tf
                 tf
             }
-
         }
-
     }
 }

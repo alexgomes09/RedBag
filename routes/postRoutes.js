@@ -55,6 +55,8 @@ function postRoutes(app) {
     app.post('/getBloodRequest', function(req, res) {
         console.log('/getBloodRequest');
 
+        console.log("params "+ req.query)
+
         var skip = 0;
 
         var query = {

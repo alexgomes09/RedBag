@@ -37,7 +37,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:background="@color/transparent"
+                android:background="@color/transparent_white_80"
                 app:layout_collapseMode="pin">
 
                 <TextView
@@ -109,7 +109,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         app:layout_behavior ="com.alexgomes.redbag.CustomBehaviorFilter"
-        android:background="@color/transparent" />
+        android:background="@color/transparent_white_80" />
 
 
     <Button

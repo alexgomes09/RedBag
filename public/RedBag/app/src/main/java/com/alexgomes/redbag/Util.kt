@@ -35,6 +35,7 @@ class Util {
         const val minAgeToDonateBlood = 17
         const val maxAgeToDonateBlood = 99
 
+
         fun checkForInternet(context: Context): Boolean {
             fun hasNetworkConnectivity(context: Context): Boolean {
                 val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
