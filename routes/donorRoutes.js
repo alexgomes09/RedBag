@@ -10,21 +10,21 @@ function donorRoutes(app, passport) {
         console.log('/registerWithEmail');
 
         if (!req.body.emailAddress) {
-            return res.status(403).send({
+            return res.status(400).send({
                 success: false,
                 message: "You must provide email address"
             })
         }
 
         if (!req.body.password) {
-            return res.status(403).send({
+            return res.status(400).send({
                 success: false,
                 message: "You must provide a password"
             })
         }
 
         if (!req.body.bloodGroup) {
-            return res.status(403).send({
+            return res.status(400).send({
                 success: false,
                 message: "You must provide your blood group"
             })
@@ -47,12 +47,12 @@ function donorRoutes(app, passport) {
         };
 
         if (!data.emailAddress) {
-            res.status(202).send({
+            res.status(400).send({
                 success: false,
                 message: 'You must provide an email address.'
             })
         } else if (!data.password) {
-            res.status(202).send({
+            res.status(400).send({
                 success: false,
                 message: 'You must provide a password'
             })
@@ -62,7 +62,7 @@ function donorRoutes(app, passport) {
                 })
                 .then(function(donor) {
                     if (!donor || donor === {} || donor === []) {
-                        res.status(202).send({
+                        res.status(401).send({
                             success: false,
                             message: "Invalid email address or password, kindly try again"
                         })
@@ -70,13 +70,13 @@ function donorRoutes(app, passport) {
                         donor.comparePassword(data.password, function(err, isMatch) {
                             if (err) {
                                 console.log('Password Verification Error: ', err);
-                                res.status(202).send({
+                                res.status(401).send({
                                     success: false,
                                     message: 'Encountered error while processing request, kindly try again',
                                     error: err
                                 })
                             } else if (!isMatch) {
-                                res.status(202).send({
+                                res.status(401).send({
                                     success: false,
                                     message: 'Invalid email address or password, kindly try again'
                                 })
