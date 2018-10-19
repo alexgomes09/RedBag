@@ -13,7 +13,7 @@ var postSchema = new Schema({
     phoneNumber: String,
     name: String,
     address: String,
-    email: String,
+    emailAddress: String,
     age: Number,
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 

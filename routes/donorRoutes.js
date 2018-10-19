@@ -35,40 +35,6 @@ function donorRoutes(app, passport) {
             if (error) return res.status(202).json(error);
             if (!user) return res.status(404).json({ message: 'Something went wrong, please try again.' });
         })(req, res, next)
-
-        // var newDonor = {};
-
-        // if (req.body.phoneNumber) {
-        //     newDonor.phoneNumber = req.body.phoneNumber
-        // }
-
-        // if (req.body.email) {
-        //     newDonor.email = req.body.email
-        // }
-
-        // newDonor.deviceId = req.body.deviceId;
-        // newDonor.name = req.body.name;
-        // newDonor.age = req.body.age;
-        // newDonor.bloodGroup = req.body.bloodGroup
-
-        // Donor.findOneAndUpdate({
-        //     'deviceId': req.body.deviceId
-        // }, newDonor, { upsert: true, new: true }, function(err, donor) {
-
-        //     if (err) {
-        //         res.status(401).send({
-        //             success: true,
-        //             message: "Error occured",
-        //             err: err
-        //         })
-        //     } else {
-        //         res.status(200).send({
-        //             success: true,
-        //             message: "Success",
-        //             donor: donor
-        //         })
-        //     }
-        // })
     })
 
     //LOGIN
