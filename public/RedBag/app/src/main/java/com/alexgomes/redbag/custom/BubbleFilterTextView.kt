@@ -1,21 +1,14 @@
 package com.alexgomes.redbag.custom
 
 import android.content.Context
-import android.content.res.TypedArray
+import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.ShapeDrawable
-import android.graphics.drawable.StateListDrawable
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
 import android.util.AttributeSet
 import android.util.TypedValue
-import android.view.ViewGroup
 import com.alexgomes.redbag.R
 import com.alexgomes.redbag.dp
-import okhttp3.internal.Util
-import android.content.res.ColorStateList
-import android.view.View
 
 
 /**
@@ -55,7 +48,6 @@ class BubbleFilterTextView : CustomTextView {
         a.recycle()
 
         background = ContextCompat.getDrawable(context, R.drawable.selector_bubble)
-
 
         setTextColor(ColorStateList(states, colors))
 

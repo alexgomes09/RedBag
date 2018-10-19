@@ -26,6 +26,7 @@
         android:textAllCaps="true"
         android:textColor="@android:color/white"
         android:textSize="20sp"
+        android:letterSpacing="0.1"
         app:custom_font="@string/font_bold"
         tools:text="RedBag" />
 

@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import com.alexgomes.redbag.PrefUtil
 import com.alexgomes.redbag.R
 import com.alexgomes.redbag.donor.BloodRequestListActivity
-import com.alexgomes.redbag.donor.DonorCreateProfileActivity
+import com.alexgomes.redbag.donor.DonorAuthenticationActivity
 import com.alexgomes.redbag.recipient.RecipientRequestBloodActivity
 import kotlinx.android.synthetic.main.activity_asking.*
 
@@ -21,10 +21,10 @@ class AskingScreen : AppCompatActivity() {
 
         btnDonor.setOnClickListener({
 
-            if (PrefUtil.getBoolean(PrefUtil.USER_CREATED_DONOR_PROFILE, false)) {
+            if (PrefUtil.getBoolean(PrefUtil.DONOR_TOKEN, false)) {
                 startActivity(Intent(this@AskingScreen, BloodRequestListActivity::class.java))
             } else {
-                startActivity(Intent(this@AskingScreen, DonorCreateProfileActivity::class.java))
+                startActivity(Intent(this@AskingScreen, DonorAuthenticationActivity::class.java))
             }
 
             overridePendingTransition(R.anim.slide_in_right, R.anim.scale_out)

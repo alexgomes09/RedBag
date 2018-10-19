@@ -33,9 +33,11 @@
         <activity
             android:name=".recipient.RecipientRequestBloodActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".donor.BloodRequestListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".donor.DonorAuthenticationActivity"
             android:screenOrientation="portrait" />
     </application>
 </manifest>

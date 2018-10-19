@@ -1,26 +1,25 @@
 // modules =================================================
 var express = require('express');
 var app = express();
-// var passport = require('passport');
+var passport = require('passport');
 var cors = require('cors');
 var jwt = require('jsonwebtoken');
 var bodyParser = require('body-parser');
 
 //does database connection
 require('./config/database');
-// require('./config/auth');
+require('./config/auth');
 
 var port = process.env.PORT || 8080;
 
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({extended: true}));
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 // app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 
-
 // Allow cross origin requests(CORS) ======================================================================
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -46,12 +45,12 @@ app.use(express.static(__dirname + '/public')); // set the static files location
 //     res.sendFile(process.cwd() + '/public/');
 // });
 
-app.trimString = function(val){
-    return val.replace(/(^\s+|\s+$)/g,'')
+app.trimString = function(val) {
+    return val.replace(/(^\s+|\s+$)/g, '')
 };
 
 // routes ======================================================================
-require('./routes/index')(app); // pass our application into our routes
+require('./routes/index')(app, passport); // pass our application into our routes
 
 
 // launch ======================================================================

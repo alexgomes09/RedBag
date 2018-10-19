@@ -43,7 +43,7 @@
                 android:hint="Age"
                 android:maxLength="2"
                 android:textIsSelectable="false"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <com.alexgomes.redbag.custom.CustomEditText
                 android:id="@+id/etBloodGroup"
@@ -76,11 +76,11 @@
         <com.alexgomes.redbag.custom.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="or"
-            android:layout_marginTop="-5dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="-5dp"
+            android:layout_marginTop="-5dp"
             android:includeFontPadding="false"
-            android:layout_gravity="center" />
+            android:text="or" />
 
         <com.alexgomes.redbag.custom.CustomEditText
             android:id="@+id/etEmail"
@@ -106,16 +106,4 @@
             android:textColor="@android:color/white"
             android:textSize="20sp" />
     </LinearLayout>
-
-    <com.alexgomes.redbag.custom.CustomTextView
-        android:id="@+id/error_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:alpha="0"
-        android:layout_marginTop="@dimen/appbar_height"
-        android:background="@color/bloodRed"
-        android:textColor="@android:color/white"
-        android:padding="5sp"
-        android:gravity="center"
-        android:includeFontPadding="false" />
 </FrameLayout>

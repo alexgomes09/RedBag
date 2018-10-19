@@ -14,6 +14,10 @@
 
     <declare-styleable name="CustomEditText">
         <attr name="custom_font"/>
+        <attr name="hint" format="string|reference"/>
+        <attr name="inputType" format="string"/>
+        <attr name="label" format="string|reference"/>
+        <attr name="maxLength" format="integer"/>
     </declare-styleable>
 
     <declare-styleable name="BubbleFilterTextView">

@@ -15,6 +15,8 @@ import com.alexgomes.redbag.dp
  */
 class CustomButton : AppCompatButton {
 
+    private val buttonCornerRadius = 25.dp
+
     constructor(context: Context) : super(context) {
         init(context, null)
     }
@@ -50,7 +52,7 @@ class CustomButton : AppCompatButton {
 
     private fun DoRoundedCorner(){
         val drawable = GradientDrawable()
-        drawable.cornerRadius = 8.dp.toFloat()
+        drawable.cornerRadius = buttonCornerRadius.toFloat()
         if(background is ColorDrawable){
             drawable.setColor((background as ColorDrawable).color)
         }
