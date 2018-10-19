@@ -3,12 +3,17 @@ package com.alexgomes.redbag.networking
 import com.alexgomes.redbag.BuildConfig
 import com.alexgomes.redbag.RedBagApplication
 import com.alexgomes.redbag.Util
+import com.alexgomes.redbag.networking.generic.APIError
 import com.alexgomes.redbag.networking.response.DonorLoginRegisterResponse
 import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Callback
+import retrofit2.Converter
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 /**
@@ -17,6 +22,7 @@ import java.util.concurrent.TimeUnit
 object RestAdapter {
 
     private var redBagApiService: RedBagApiService
+    private val retrofit: Retrofit
 
     init {
         val okHttpClientBuilder = OkHttpClient.Builder()
@@ -30,13 +36,25 @@ object RestAdapter {
             okHttpClientBuilder.addInterceptor(loggingInterceptor)
         }
 
-        val retrofit = Retrofit.Builder()
+        retrofit = Retrofit.Builder()
                 .baseUrl(Util.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClientBuilder.build())
                 .build()
 
         redBagApiService = retrofit.create(RedBagApiService::class.java)
+    }
+
+    fun parseError(response: Response<*>): APIError {
+        val converter: Converter<ResponseBody, APIError> = retrofit.responseBodyConverter(APIError::class.java, arrayOfNulls(0))
+        val error: APIError
+
+        try {
+            error = converter.convert(response.errorBody())
+        } catch (e: IOException) {
+            return APIError(false, "Something went wrong! please try again")
+        }
+        return error
     }
 
     fun registerWithEmail(emailAddress: String, password: String, bloodGroup: String, onResponseListener: Callback<DonorLoginRegisterResponse>) {

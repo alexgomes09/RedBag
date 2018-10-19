@@ -1,6 +1,6 @@
 package com.alexgomes.redbag.networking.response
 
-import com.alexgomes.redbag.networking.DonorModel
+import com.alexgomes.redbag.networking.generic.DonorModel
 
 /**
  * Created by agomes on 10/18/18.

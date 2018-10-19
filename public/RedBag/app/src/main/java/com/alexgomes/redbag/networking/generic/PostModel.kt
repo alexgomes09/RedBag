@@ -1,4 +1,4 @@
-package com.alexgomes.redbag.networking
+package com.alexgomes.redbag.networking.generic
 
 import com.google.gson.annotations.SerializedName
 

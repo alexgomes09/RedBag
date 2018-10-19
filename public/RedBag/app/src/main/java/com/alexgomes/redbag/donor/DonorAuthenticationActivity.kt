@@ -74,7 +74,7 @@ class DonorAuthenticationActivity : AppCompatActivity() {
             Util.hideKeyboard(btnLogin)
 
             when {
-                TextUtils.isEmpty(etLoginEmail.getText()) && !Util.isValidEmail(etLoginEmail.getText()) -> {
+                TextUtils.isEmpty(etLoginEmail.getText()) || !Util.isValidEmail(etLoginEmail.getText()) -> {
                     etLoginEmail.setError("Valid email required")
                     return@setOnClickListener
                 }
@@ -89,11 +89,14 @@ class DonorAuthenticationActivity : AppCompatActivity() {
 
             RestAdapter.loginWithEmail(emailAddress, password, object : Callback<DonorLoginRegisterResponse> {
                 override fun onResponse(call: Call<DonorLoginRegisterResponse>, response: Response<DonorLoginRegisterResponse>) {
-                    response.isSuccessful.let {
+                    if (response.isSuccessful) {
                         Util.showToast(this@DonorAuthenticationActivity, "Create Profile Success")
                         PrefUtil.putString(PrefUtil.USER_CREATED_DONOR_PROFILE, response.body()!!.token)
                         startActivity(Intent(this@DonorAuthenticationActivity, BloodRequestListActivity::class.java))
                         finish()
+                    } else {
+                        Util.showToast(this@DonorAuthenticationActivity,RestAdapter.parseError(response).message)
+                        Log.v("==TAG==", "DonorAuthenticationActivity.onResponse " +RestAdapter.parseError(response).message)
                     }
                 }
 
@@ -109,7 +112,7 @@ class DonorAuthenticationActivity : AppCompatActivity() {
             Util.hideKeyboard(btnLogin)
 
             when {
-                TextUtils.isEmpty(etLoginEmail.getText()) && !Util.isValidEmail(etLoginEmail.getText()) -> {
+                TextUtils.isEmpty(etLoginEmail.getText()) || !Util.isValidEmail(etLoginEmail.getText()) -> {
                     etRegisterEmail.setError("Valid email required")
                     return@setOnClickListener
                 }
