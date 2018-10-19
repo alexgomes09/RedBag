@@ -118,8 +118,8 @@ class DonorAuthenticationActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
 
-                TextUtils.isEmpty(bloodGroup) ->{
-                    Util.showToast(this,"Select your blood group")
+                TextUtils.isEmpty(bloodGroup) -> {
+                    Util.showToast(this, "Select your blood group")
                     return@setOnClickListener
                 }
             }
