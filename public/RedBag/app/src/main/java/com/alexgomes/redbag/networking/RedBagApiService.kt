@@ -28,8 +28,8 @@ interface RedBagApiService {
 //    @POST("/postBloodRequest")
 //    fun requestBlood(@Body requestGetBloodModel: Request_Get_BloodModel.Posts): Call<Void>
 
-    @POST("/getBloodRequest")
-    fun getBloodRequest(@QueryMap body: HashMap<String, Any>): Call<Request_Get_BloodModel>
+    @POST("/getBloodRequestList")
+    fun getBloodRequestList(@QueryMap body: HashMap<String, Any>): Call<Request_Get_BloodModel>
 
 
 }

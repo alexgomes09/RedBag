@@ -3,6 +3,7 @@ package com.alexgomes.redbag.onboarding
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.text.TextUtils
 import com.alexgomes.redbag.PrefUtil
 import com.alexgomes.redbag.R
 import com.alexgomes.redbag.donor.BloodRequestListActivity
@@ -21,7 +22,7 @@ class AskingScreen : AppCompatActivity() {
 
         btnDonor.setOnClickListener({
 
-            if (PrefUtil.getBoolean(PrefUtil.DONOR_TOKEN, false)) {
+            if (!TextUtils.isEmpty(PrefUtil.getString(PrefUtil.DONOR_TOKEN, ""))) {
                 startActivity(Intent(this@AskingScreen, BloodRequestListActivity::class.java))
             } else {
                 startActivity(Intent(this@AskingScreen, DonorAuthenticationActivity::class.java))

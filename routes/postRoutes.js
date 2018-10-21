@@ -52,8 +52,8 @@ function postRoutes(app) {
     });
 
 
-    app.post('/getBloodRequest', function(req, res) {
-        console.log('/getBloodRequest');
+    app.post('/getBloodRequestList', function(req, res) {
+        console.log('/getBloodRequestList');
 
         console.log("params "+ req.query.bloodGroup)
 
