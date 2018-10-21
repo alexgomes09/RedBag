@@ -1,8 +1,6 @@
 package com.alexgomes.redbag.custom
 
 import android.content.Context
-import android.os.Bundle
-import android.os.Parcelable
 import android.text.InputFilter
 import android.text.InputType
 import android.text.TextUtils
@@ -38,6 +36,7 @@ class CustomEditText : LinearLayout {
         inflater.inflate(R.layout.partial_edit_text_with_label, this, true)
 
         orientation = LinearLayout.VERTICAL
+        isSaveEnabled = true
 
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomEditText)
 
@@ -98,6 +97,7 @@ class CustomEditText : LinearLayout {
         }
 
         typedArray.recycle()
+
     }
 
     override fun onAttachedToWindow() {
@@ -127,19 +127,19 @@ class CustomEditText : LinearLayout {
         edit_text.filters = FilterArray
     }
 
-    override fun onSaveInstanceState(): Parcelable {
-        val bundle = Bundle()
-        bundle.putString("text", edit_text.text.toString())
-        super.onSaveInstanceState()
-        return bundle
-    }
-
-    override fun onRestoreInstanceState(state: Parcelable?) {
-        if (state is Bundle) {
-            val bundle = state
-            setText(bundle.getString("text"))
-        }
-        super.onRestoreInstanceState(state)
-    }
+//    override fun onSaveInstanceState(): Parcelable {
+//        val bundle = Bundle()
+//        bundle.putString("text", edit_text.text.toString())
+//        super.onSaveInstanceState()
+//        return bundle
+//    }
+//
+//    override fun onRestoreInstanceState(state: Parcelable?) {
+//        if (state is Bundle) {
+//            val bundle = state
+//            setText(bundle.getString("text"))
+//        }
+//        super.onRestoreInstanceState(state)
+//    }
 
 }

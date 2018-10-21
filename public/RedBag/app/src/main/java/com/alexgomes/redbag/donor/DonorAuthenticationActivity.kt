@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import com.alexgomes.redbag.BloodGroup
 import com.alexgomes.redbag.PrefUtil
@@ -13,6 +12,7 @@ import com.alexgomes.redbag.R
 import com.alexgomes.redbag.Util
 import com.alexgomes.redbag.custom.BubbleFilterTextView
 import com.alexgomes.redbag.custom.FlowLayout
+import com.alexgomes.redbag.custom.LoadingDialog
 import com.alexgomes.redbag.networking.RestAdapter
 import com.alexgomes.redbag.networking.response.DonorLoginRegisterResponse
 import kotlinx.android.synthetic.main.activity_donor_authenticate.*
@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.partial_appbar.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 /**
  * Created by agomes on 10/18/18.
@@ -71,45 +72,47 @@ class DonorAuthenticationActivity : AppCompatActivity() {
         })
 
         btnLogin.setOnClickListener {
-            Util.hideKeyboard(btnLogin)
-
             when {
                 TextUtils.isEmpty(etLoginEmail.getText()) || !Util.isValidEmail(etLoginEmail.getText()) -> {
+                    etLoginEmail.requestFocus()
                     etLoginEmail.setError("Valid email required")
                     return@setOnClickListener
                 }
                 TextUtils.isEmpty(etLoginPassword.getText()) -> {
+                    etLoginPassword.requestFocus()
                     etLoginPassword.setError("Password required")
                     return@setOnClickListener
                 }
             }
 
+            Util.hideKeyboard(btnLogin)
+
             val emailAddress = etLoginEmail.getText()
             val password = etLoginPassword.getText()
 
+            LoadingDialog.getInstance().showDialog(this, "Authenticating...")
             RestAdapter.loginWithEmail(emailAddress, password, object : Callback<DonorLoginRegisterResponse> {
                 override fun onResponse(call: Call<DonorLoginRegisterResponse>, response: Response<DonorLoginRegisterResponse>) {
+                    LoadingDialog.getInstance().dismiss()
+
                     if (response.isSuccessful) {
-                        Util.showToast(this@DonorAuthenticationActivity, "Create Profile Success")
-                        PrefUtil.putString(PrefUtil.USER_CREATED_DONOR_PROFILE, response.body()!!.token)
+                        PrefUtil.putString(PrefUtil.DONOR_TOKEN, response.body()!!.token)
                         startActivity(Intent(this@DonorAuthenticationActivity, BloodRequestListActivity::class.java))
                         finish()
                     } else {
-                        Util.showToast(this@DonorAuthenticationActivity,RestAdapter.parseError(response).message)
-                        Log.v("==TAG==", "DonorAuthenticationActivity.onResponse " +RestAdapter.parseError(response).message)
+                        Util.showToast(this@DonorAuthenticationActivity, RestAdapter.parseError(response).message)
                     }
                 }
 
                 override fun onFailure(call: Call<DonorLoginRegisterResponse>, t: Throwable) {
+                    LoadingDialog.getInstance().dismiss()
                     call.cancel()
                     Util.showToast(this@DonorAuthenticationActivity, t.localizedMessage)
-                    Log.v("==TAG==", "DonorCreateProfileActivity.onFailure " + t.localizedMessage)
                 }
             })
         }
 
         btnRegister.setOnClickListener {
-            Util.hideKeyboard(btnLogin)
 
             when {
                 TextUtils.isEmpty(etLoginEmail.getText()) || !Util.isValidEmail(etLoginEmail.getText()) -> {
@@ -127,11 +130,15 @@ class DonorAuthenticationActivity : AppCompatActivity() {
                 }
             }
 
+            Util.hideKeyboard(btnLogin)
+
             val emailAddress = etLoginEmail.getText()
             val password = etLoginPassword.getText()
 
+            LoadingDialog.getInstance().showDialog(this, "Registering...")
             RestAdapter.registerWithEmail(emailAddress, password, bloodGroup, object : Callback<DonorLoginRegisterResponse> {
                 override fun onResponse(call: Call<DonorLoginRegisterResponse>, response: Response<DonorLoginRegisterResponse>) {
+                    LoadingDialog.getInstance().dismiss()
                     response.isSuccessful.let {
                         Util.showToast(this@DonorAuthenticationActivity, "Create Profile Success")
                         PrefUtil.putString(PrefUtil.USER_CREATED_DONOR_PROFILE, response.body()!!.token)
@@ -141,13 +148,11 @@ class DonorAuthenticationActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<DonorLoginRegisterResponse>, t: Throwable) {
+                    LoadingDialog.getInstance().dismiss()
                     call.cancel()
                     Util.showToast(this@DonorAuthenticationActivity, t.localizedMessage)
-                    Log.v("==TAG==", "DonorCreateProfileActivity.onFailure " + t.localizedMessage)
                 }
             })
         }
-
-
     }
 }
