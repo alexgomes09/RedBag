@@ -62,10 +62,23 @@
         android:id="@+id/close2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClickClose"
-        android:paddingRight="16dp"
-        android:paddingTop="16dp"
+        android:padding="18dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_close" />
+
+    <com.alexgomes.redbag.custom.CustomButton
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginBottom="@dimen/button_height"
+        android:background="@color/bloodRed"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:text="set fitler"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/guideline"
+        app:layout_constraintRight_toRightOf="parent" />
 </android.support.constraint.ConstraintLayout>

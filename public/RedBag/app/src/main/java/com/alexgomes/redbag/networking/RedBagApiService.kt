@@ -25,9 +25,11 @@ interface RedBagApiService {
             @Field("emailAddress") emailAddress: String,
             @Field("password") password: String): Call<DonorLoginRegisterResponse>
 
+    @POST("/getBloodRequestList")
+    fun getBloodRequestList(@Query("skip") skip: String,
+                            @Query("bloodGroup",encoded = false) list: ArrayList<String>): Call<BloodRequestPosts>
+
 //    @POST("/postBloodRequest")
 //    fun requestBlood(@Body requestGetBloodModel: BloodRequestPosts.Posts): Call<Void>
 
-    @POST("/getBloodRequestList")
-    fun getBloodRequestList(@Query("bloodGroup") body: HashMap<String, Any>): Call<BloodRequestPosts>
 }

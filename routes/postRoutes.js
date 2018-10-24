@@ -62,8 +62,6 @@ function postRoutes(app) {
             "updated_at": "desc" //recent to old
         }
 
-        console.log("query bloodgroup ", req.query.bloodGroup)
-
         if (req.query.bloodGroup) {
             query.bloodGroup = { $in: req.query.bloodGroup }
         }
@@ -72,9 +70,6 @@ function postRoutes(app) {
         if (/^\d+$/.test(req.query.skip)) {
             skip = Number(req.query.skip)
         }
-
-        console.log("query " + JSON.stringify(query.bloodGroup,null,2))
-
 
         Post
             .find(query)

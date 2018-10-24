@@ -76,9 +76,9 @@ object RestAdapter {
 //        redBagApiService.requestBlood(requestGetBloodModel).enqueue(onResponseListener)
 //    }
 
-    fun getBloodRequestList(body: HashMap<String, Any>, onResponseListener: Callback<BloodRequestPosts>) {
+    fun getBloodRequestList(amountToSkip:String, list:ArrayList<String>,onResponseListener: Callback<BloodRequestPosts>) {
         //we check internet connection before making every network call
         if (!Util.checkForInternet(RedBagApplication.applicationContext())) return
-        redBagApiService.getBloodRequestList(body).enqueue(onResponseListener)
+        redBagApiService.getBloodRequestList(amountToSkip,list).enqueue(onResponseListener)
     }
 }

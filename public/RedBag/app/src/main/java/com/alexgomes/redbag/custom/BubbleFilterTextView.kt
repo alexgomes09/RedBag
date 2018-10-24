@@ -51,8 +51,8 @@ class BubbleFilterTextView : CustomTextView {
 
         setTextColor(ColorStateList(states, colors))
 
-        setOnClickListener {
-            this.isSelected = !isSelected
-        }
+//        setOnClickListener {
+//            this.isSelected = !isSelected
+//        }
     }
 }
