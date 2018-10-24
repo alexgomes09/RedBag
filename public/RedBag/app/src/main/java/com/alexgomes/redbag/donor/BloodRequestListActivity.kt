@@ -10,14 +10,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.alexgomes.redbag.R
+import com.alexgomes.redbag.Util
 import com.alexgomes.redbag.custom.CustomTextView
 import com.alexgomes.redbag.custom.EndlessRecyclerViewScrollListener
 import com.alexgomes.redbag.dp
 import com.alexgomes.redbag.networking.RestAdapter
-import com.alexgomes.redbag.networking.reqest.Request_Get_BloodModel
+import com.alexgomes.redbag.networking.generic.PostModel
+import com.alexgomes.redbag.networking.reqest.BloodRequestPosts
 import kotlinx.android.synthetic.main.activity_blood_request_list.*
 import kotlinx.android.synthetic.main.partial_appbar.*
 import kotlinx.android.synthetic.main.partial_loading_screen.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 /**
  * Created by agomes on 9/18/18.
@@ -27,7 +37,8 @@ class BloodRequestListActivity : AppCompatActivity() {
 
     private lateinit var adapter: RecipientListAdapter
     private val body = hashMapOf<String, Any>()
-    private var listOfBloodPost: MutableList<Request_Get_BloodModel.Posts> = mutableListOf()
+    private val listOfBloodPost: MutableList<PostModel> = mutableListOf()
+    private val selectedFilterBloodGroup :ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,29 +69,35 @@ class BloodRequestListActivity : AppCompatActivity() {
 
         btn_topbar_right.setOnClickListener {
             supportFragmentManager.beginTransaction()
-                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right,R.anim.slide_in_right,R.anim.slide_out_right)
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_right)
                     .replace(android.R.id.content, FilterFragment.newInstance())
                     .addToBackStack(null)
                     .commit()
         }
+
+        selectedFilterBloodGroup.add("A+")
+        selectedFilterBloodGroup.add("AB+")
+        selectedFilterBloodGroup.add("B-")
     }
 
     fun getBloodRequest(amountToSkip: Int) {
         body["skip"] = amountToSkip.toString()
-        body["bloodGroup"] = mutableListOf("A+","B+")
+        body["bloodGroup"] = Arrays.toString(selectedFilterBloodGroup.toArray())
 
-        RestAdapter.getBloodRequest(body, object : Callback<Request_Get_BloodModel> {
-            override fun onResponse(call: Call<Request_Get_BloodModel>, response: Response<Request_Get_BloodModel>) {
+        RestAdapter.getBloodRequestList(body, object : Callback<BloodRequestPosts> {
+            override fun onResponse(call: Call<BloodRequestPosts>, response: Response<BloodRequestPosts>) {
                 loading.visibility = View.GONE
-                swipeRefreshLayout.isRefreshing = false;
+                swipeRefreshLayout.isRefreshing = false
 
                 if (response.isSuccessful) {
                     listOfBloodPost.addAll(response.body()!!.posts)
                     adapter.notifyItemInserted(listOfBloodPost.size)
+                } else {
+                    Util.showToast(this@BloodRequestListActivity, RestAdapter.parseError(response).message)
                 }
             }
 
-            override fun onFailure(call: Call<Request_Get_BloodModel>?, t: Throwable?) {
+            override fun onFailure(call: Call<BloodRequestPosts>, t: Throwable) {
                 loading.visibility = View.GONE
                 swipeRefreshLayout.isRefreshing = false
                 Util.showToast(this@BloodRequestListActivity, "Error retrieving data")
@@ -104,7 +121,7 @@ class BloodRequestListActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: RecipientViewHolder, position: Int) {
             holder.tvName.text = listOfBloodPost[position].name
             holder.tvNumberOfBags.text = "${listOfBloodPost[position].numberOfBags} bags"
-            holder.tvPosted.text = "Posted: ${convertServerTimeToDisplayFormat(listOfBloodPost[position].postedTime)}"
+            holder.tvPosted.text = "Posted: ${convertServerTimeToDisplayFormat(listOfBloodPost[position].createdAt)}"
             holder.tvBloodGroup.text = listOfBloodPost[position].bloodGroup
         }
 
@@ -112,7 +129,7 @@ class BloodRequestListActivity : AppCompatActivity() {
             return listOfBloodPost.size
         }
 
-        fun convertServerTimeToDisplayFormat(time: String?): String {
+        private fun convertServerTimeToDisplayFormat(time: String?): String {
 
             if (time == null) {
                 return ""

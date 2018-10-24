@@ -51,30 +51,29 @@ function postRoutes(app) {
         })
     });
 
-
     app.post('/getBloodRequestList', function(req, res) {
         console.log('/getBloodRequestList');
 
-        console.log("params "+ req.query.bloodGroup)
-
         var skip = 0;
 
-        var query = {
+        var query = {}
 
-        }
         var sort = {
-            "updated_at":"desc" //recent to old
+            "updated_at": "desc" //recent to old
         }
+
+        console.log("query bloodgroup ", req.query.bloodGroup)
 
         if (req.query.bloodGroup) {
-            query.bloodGroup = req.query.bloodGroup;
+            query.bloodGroup = { $in: req.query.bloodGroup }
         }
-
 
         // check if skip is number
         if (/^\d+$/.test(req.query.skip)) {
             skip = Number(req.query.skip)
         }
+
+        console.log("query " + JSON.stringify(query.bloodGroup,null,2))
 
 
         Post

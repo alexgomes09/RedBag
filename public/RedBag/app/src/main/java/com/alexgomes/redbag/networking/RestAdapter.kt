@@ -4,7 +4,7 @@ import com.alexgomes.redbag.BuildConfig
 import com.alexgomes.redbag.RedBagApplication
 import com.alexgomes.redbag.Util
 import com.alexgomes.redbag.networking.generic.APIError
-import com.alexgomes.redbag.networking.reqest.Request_Get_BloodModel
+import com.alexgomes.redbag.networking.reqest.BloodRequestPosts
 import com.alexgomes.redbag.networking.response.DonorLoginRegisterResponse
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -70,13 +70,13 @@ object RestAdapter {
         redBagApiService.loginWithEmail(emailAddress, password).enqueue(onResponseListener)
     }
 
-//    fun requestBlood(requestGetBloodModel: Request_Get_BloodModel.Posts, onResponseListener: Callback<Void>) {
+//    fun requestBlood(requestGetBloodModel: BloodRequestPosts.Posts, onResponseListener: Callback<Void>) {
 //        we check internet connection before making every network call
 //        if (!Util.checkForInternet(RedBagApplication.applicationContext())) return
 //        redBagApiService.requestBlood(requestGetBloodModel).enqueue(onResponseListener)
 //    }
 
-    fun getBloodRequestList(body: HashMap<String, Any>, onResponseListener: Callback<Request_Get_BloodModel>) {
+    fun getBloodRequestList(body: HashMap<String, Any>, onResponseListener: Callback<BloodRequestPosts>) {
         //we check internet connection before making every network call
         if (!Util.checkForInternet(RedBagApplication.applicationContext())) return
         redBagApiService.getBloodRequestList(body).enqueue(onResponseListener)
