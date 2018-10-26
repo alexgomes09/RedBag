@@ -12,6 +12,7 @@ import com.alexgomes.redbag.R
 import com.alexgomes.redbag.custom.BubbleFilterTextView
 import kotlinx.android.synthetic.main.fragment_filter.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
@@ -20,22 +21,26 @@ import java.util.*
 class FilterFragment : Fragment() {
 
     interface OnFilterSet {
-        fun filterSet()
+        fun filterSet(selectedSort: String)
     }
 
     lateinit var selectedFilter: ArrayList<String>
-    lateinit var onFilterSet: OnFilterSet
+    lateinit var selectedSort: String
+    private var onFilterSet: OnFilterSet? = null
 
     companion object {
 
-        fun newInstance(selectedFilter: ArrayList<String>): FilterFragment {
+        fun newInstance(selectedFilter: ArrayList<String>, filterSort: String): FilterFragment {
             val args: Bundle = Bundle()
             args.putStringArrayList("selectedFilter", selectedFilter)
+            args.putString("selectedSort", filterSort)
 
             val fragment = FilterFragment()
             fragment.arguments = args
 
+            selectedFilter.clear()
             fragment.selectedFilter = args.getStringArrayList("selectedFilter")
+            fragment.selectedSort = args.getString("selectedSort")
             return fragment
         }
     }
@@ -71,12 +76,24 @@ class FilterFragment : Fragment() {
             }
         }
 
+        if (selectedSort.equals("desc")) {
+            sort_new_to_old.isChecked = true
+        } else {
+            sort_old_to_new.isChecked = true
+        }
+
         close1.setOnClickListener { closeFilter() }
         close2.setOnClickListener { closeFilter() }
 
         btnSubmit.setOnClickListener {
+            if (sort_new_to_old.isChecked) {
+                selectedSort = "desc"
+            } else if (sort_old_to_new.isChecked) {
+                selectedSort = "asc"
+            }
+
+            onFilterSet?.filterSet(selectedSort)
             closeFilter()
-            onFilterSet.filterSet()
         }
     }
 
@@ -87,9 +104,13 @@ class FilterFragment : Fragment() {
         }
     }
 
+    override fun onDetach() {
+        super.onDetach()
+        onFilterSet = null
+    }
+
     private fun closeFilter() {
         close1.alpha = 0.0f
         activity.onBackPressed()
     }
-
 }

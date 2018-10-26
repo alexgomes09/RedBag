@@ -27,7 +27,8 @@ interface RedBagApiService {
 
     @POST("/getBloodRequestList")
     fun getBloodRequestList(@Query("skip") skip: String,
-                            @Query("bloodGroup",encoded = false) list: ArrayList<String>): Call<BloodRequestPosts>
+                            @Query("bloodGroup",encoded = false) list: ArrayList<String>,
+                            @Query("sort") sort: String): Call<BloodRequestPosts>
 
 //    @POST("/postBloodRequest")
 //    fun requestBlood(@Body requestGetBloodModel: BloodRequestPosts.Posts): Call<Void>
