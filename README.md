@@ -33,9 +33,6 @@
 "maxDistance" = distance to find receipent within //10km
 "longitude" = -73.17234234
 "latitude" =  40.77234234
-
-##
-`/getBloodRequest` - POST
-
+```
 
 == doc to be updated == 
