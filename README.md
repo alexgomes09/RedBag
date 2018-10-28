@@ -15,10 +15,8 @@
 	"address": "Ap #464-8482 Vitae Street",
 	"email": "nec.urna@perinceptos.org",
 	"age": 61,
-	"location":{ 
-         "type": "Point",
-         "coordinates": [-70.37, 43.77]
-     }
+	"longitude": -73.17234234,
+	"latitude": 40.77234234
 }
 ```
 
