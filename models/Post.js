@@ -15,7 +15,12 @@ var postSchema = new Schema({
     address: String,
     emailAddress: String,
     age: Number,
+    location: {
+        type: { type: String },
+        coordinates: []
+    },
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 
+postSchema.index({ "location": "2dsphere" });
 
 module.exports = mongoose.model('Post', postSchema);

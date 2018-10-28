@@ -33,6 +33,7 @@ function postRoutes(app) {
         newPost.address = app.trimString(req.body.address);
         newPost.email = req.body.email;
         newPost.age = req.body.age;
+        newPost.location = req.body.location
 
         newPost.save(function(err, post) {
             if (err) {
@@ -54,22 +55,36 @@ function postRoutes(app) {
     app.post('/getBloodRequestList', function(req, res) {
         console.log('/getBloodRequestList');
 
+        //// skip
         var skip = 0;
 
+        // check if skip is number
+        if (/^\d+$/.test(req.query.skip)) {
+            skip = Number(req.query.skip)
+        }
+
+        //// Query
         var query = {}
 
         var sort = {
-            "updated_at": req.query.sort//recent to old
+            "updated_at": req.query.sort //recent to old
         }
 
         if (req.query.bloodGroup) {
             query.bloodGroup = { $in: req.query.bloodGroup }
         }
 
-        // check if skip is number
-        if (/^\d+$/.test(req.query.skip)) {
-            skip = Number(req.query.skip)
+        query.location = {
+            '$nearSphere': {
+                '$maxDistance': req.query.maxDistance * 1000, //10km
+                '$geometry': {
+                    type: 'Point',
+                    coordinates: [-73.17, 40.77]
+                }
+            }
         }
+
+        console.log(JSON.stringify(query, null, 2))
 
         Post
             .find(query)
