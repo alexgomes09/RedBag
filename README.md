@@ -5,7 +5,7 @@
 ##
 `/postBloodRequest` - POST
 
-#### Params
+#### Params Body
 ```js
 {
 	"bloodGroup": "A-",
@@ -25,7 +25,7 @@
 ##
 `/getBloodRequestList` - POST
 
-#### Query
+#### Query url
 ```js
 "skip" = number
 "sort" = "asc" or "desc"
