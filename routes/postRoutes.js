@@ -81,15 +81,15 @@ function postRoutes(app) {
             query.bloodGroup = { $in: req.query.bloodGroup }
         }
 
-        query.location = {
-            '$nearSphere': {
-                '$maxDistance': req.query.maxDistance * 1000, //10km
-                '$geometry': {
-                    type: 'Point',
-                    coordinates: [req.query.longitude, req.query.latitude]
-                }
-            }
-        }
+        // query.location = {
+        //     '$nearSphere': {
+        //         '$maxDistance': req.query.maxDistance * 1000, //10km
+        //         '$geometry': {
+        //             type: 'Point',
+        //             coordinates: [req.query.longitude, req.query.latitude]
+        //         }
+        //     }
+        // }
 
         console.log(JSON.stringify(query, null, 2))
 
