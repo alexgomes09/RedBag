@@ -24,7 +24,6 @@ function postRoutes(app) {
             })
         }
 
-
         var newPost = new Post();
         newPost.bloodGroup = bloodGroup;
         newPost.numberOfBags = req.body.numberOfBags;
@@ -33,7 +32,15 @@ function postRoutes(app) {
         newPost.address = app.trimString(req.body.address);
         newPost.email = req.body.email;
         newPost.age = req.body.age;
-        newPost.location = req.body.location
+
+        if (typeof(req.body.longitude) == 'number' && typeof(req.body.latitude) == 'number') {
+            newPost.location = {
+                type: "Point",
+                coordinates: [req.body.longitude, req.body.latitude]
+            }
+        }
+
+        console.log(JSON.stringify(newPost, null, 2))
 
         newPost.save(function(err, post) {
             if (err) {
@@ -79,7 +86,7 @@ function postRoutes(app) {
                 '$maxDistance': req.query.maxDistance * 1000, //10km
                 '$geometry': {
                     type: 'Point',
-                    coordinates: [-73.17, 40.77]
+                    coordinates: [req.query.longitude, req.query.latitude]
                 }
             }
         }

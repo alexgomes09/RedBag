@@ -15,6 +15,7 @@
 	"address": "Ap #464-8482 Vitae Street",
 	"email": "nec.urna@perinceptos.org",
 	"age": 61,
+	"ipAddress": 162.247.19.114
 	"longitude": -73.17234234,
 	"latitude": 40.77234234
 }
@@ -28,7 +29,7 @@
 "skip" = number
 "sort" = "asc" or "desc"
 "bloodGroup" = "<array of bloodgroup>" must be -> bloodGroup=A+&bloodGroup=O- in encoded format
-"maxDistance" = distance to find receipent within //10km
+"maxDistance" = distance to find receipent within //10km,
 "longitude" = -73.17234234
 "latitude" =  40.77234234
 ```

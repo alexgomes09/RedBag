@@ -13,6 +13,7 @@ import com.alexgomes.redbag.Util
 import com.alexgomes.redbag.custom.EndlessRecyclerViewScrollListener
 import com.alexgomes.redbag.dp
 import com.alexgomes.redbag.networking.RestAdapter
+import com.alexgomes.redbag.networking.generic.Location
 import com.alexgomes.redbag.networking.generic.PostModel
 import com.alexgomes.redbag.networking.reqest.BloodRequestPosts
 import kotlinx.android.synthetic.main.activity_blood_request_list.*

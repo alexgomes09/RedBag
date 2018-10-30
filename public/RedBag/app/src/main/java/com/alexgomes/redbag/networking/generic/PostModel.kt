@@ -13,5 +13,8 @@ data class PostModel(
         val address: String = "",
         val emailAddress: String = "",
         val age: Int = -1,
+        val location: Location,
         @SerializedName("created_at") val createdAt: String = "",
         @SerializedName("updated_at") val updatedAt: String = "")
+
+data class Location(val coordinates: MutableList<Double>)

@@ -27,6 +27,7 @@ var donorSchema = new Schema({
         required: true
     },
     age: Number,
+    ipAddress: Number,
     phoneNumber: String,
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 

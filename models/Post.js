@@ -15,9 +15,10 @@ var postSchema = new Schema({
     address: String,
     emailAddress: String,
     age: Number,
+    ipAddress: Number,
     location: {
         type: { type: String },
-        coordinates: []
+        coordinates: [] //longitude first
     },
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 
