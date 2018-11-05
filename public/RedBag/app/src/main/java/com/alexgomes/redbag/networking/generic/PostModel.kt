@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 /**
  * Created by agomes on 9/15/18.
  */
-data class PostModel(
+data class PostModel internal constructor(
         val bloodGroup: String = "",
-        val numberOfBags: Int= -1,
+        val numberOfBags: Int = -1,
         val phoneNumber: String = "",
         val name: String = "",
         val address: String = "",
@@ -17,4 +17,12 @@ data class PostModel(
         @SerializedName("created_at") val createdAt: String = "",
         @SerializedName("updated_at") val updatedAt: String = "")
 
-data class Location(val coordinates: MutableList<Double>)
+class Location(private val coordinates: MutableList<Double>) {
+    fun getLongitude(): Double {
+        return coordinates[0]
+    }
+
+    fun getLatitude(): Double {
+        return coordinates[1]
+    }
+}

@@ -6,14 +6,12 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import com.alexgomes.redbag.R
 import com.alexgomes.redbag.Util
 import com.alexgomes.redbag.custom.EndlessRecyclerViewScrollListener
 import com.alexgomes.redbag.dp
 import com.alexgomes.redbag.networking.RestAdapter
-import com.alexgomes.redbag.networking.generic.Location
 import com.alexgomes.redbag.networking.generic.PostModel
 import com.alexgomes.redbag.networking.reqest.BloodRequestPosts
 import kotlinx.android.synthetic.main.activity_blood_request_list.*
@@ -32,7 +30,7 @@ class BloodRequestListActivity : AppCompatActivity(), FilterFragment.OnFilterSet
 
     private lateinit var adapter: RecipientListAdapter
     private val listOfBloodPost: MutableList<PostModel> = mutableListOf()
-    private val selectedFilterBloodGroup: ArrayList<String> = ArrayList()
+    private var filterBloodGroup: ArrayList<String> = arrayListOf()
     private var filterSort:String = "desc" // recent to old
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,7 +65,7 @@ class BloodRequestListActivity : AppCompatActivity(), FilterFragment.OnFilterSet
         btn_topbar_right.setOnClickListener {
             supportFragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_right)
-                    .replace(android.R.id.content, FilterFragment.newInstance(selectedFilterBloodGroup,filterSort))
+                    .replace(android.R.id.content, FilterFragment.newInstance(filterBloodGroup,filterSort))
                     .addToBackStack(null)
                     .commit()
         }
@@ -76,7 +74,7 @@ class BloodRequestListActivity : AppCompatActivity(), FilterFragment.OnFilterSet
     fun getBloodRequest(amountToSkip: Int) {
         RestAdapter.getBloodRequestList(
                 amountToSkip.toString(),
-                selectedFilterBloodGroup,
+                filterBloodGroup,
                 filterSort,
                 object : Callback<BloodRequestPosts> {
             override fun onResponse(call: Call<BloodRequestPosts>, response: Response<BloodRequestPosts>) {
@@ -103,8 +101,9 @@ class BloodRequestListActivity : AppCompatActivity(), FilterFragment.OnFilterSet
         })
     }
 
-    override fun filterSet(selectedSort: String) {
+    override fun filterSet(selectedSort: String, selectedFilter: ArrayList<String>) {
         this.filterSort = selectedSort
+        this.filterBloodGroup = selectedFilter
         loading.visibility = View.VISIBLE
         listOfBloodPost.clear()
         adapter.notifyDataSetChanged()
