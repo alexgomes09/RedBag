@@ -13,7 +13,7 @@ var postSchema = new Schema({
     phoneNumber: String,
     name: String,
     address: String,
-    emailAddress: String,
+    email: String,
     age: Number,
     ipAddress: Number,
     location: {

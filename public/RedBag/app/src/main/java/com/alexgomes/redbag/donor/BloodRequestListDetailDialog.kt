@@ -7,6 +7,7 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.app.AppCompatDialogFragment
+import android.text.util.Linkify
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,10 +64,26 @@ class BloodRequestListDetailDialog : AppCompatDialogFragment() {
         recipientName.text = bloodRequestItem.name
         recipientBloodRequire.text = context.resources.getQuantityString(R.plurals.bloodBag, bloodRequestItem.numberOfBags, bloodRequestItem.numberOfBags) + " of blood"
         recipientAge.text = "${bloodRequestItem.age} years old"
-        recipientAddress.text = bloodRequestItem.address
-        recipientPhoneNumber.text = bloodRequestItem.phoneNumber
-        recipientEmail.text = bloodRequestItem.email
 
+        if (!bloodRequestItem.address.isNullOrEmpty()) {
+            t4.visibility = View.VISIBLE
+            recipientAddress.visibility = View.VISIBLE
+            recipientAddress.text = bloodRequestItem.address
+        }
+
+        if (!bloodRequestItem.phoneNumber.isNullOrEmpty()) {
+            t5.visibility = View.VISIBLE
+            recipientPhoneNumber.visibility = View.VISIBLE
+            recipientPhoneNumber.text = bloodRequestItem.phoneNumber
+            Linkify.addLinks(recipientPhoneNumber, Linkify.PHONE_NUMBERS)
+        }
+
+        if (!bloodRequestItem.email.isNullOrEmpty()) {
+            t6.visibility = View.VISIBLE
+            recipientEmail.visibility = View.VISIBLE
+            recipientEmail.text = bloodRequestItem.email
+            Linkify.addLinks(recipientEmail, Linkify.EMAIL_ADDRESSES)
+        }
     }
 
 
