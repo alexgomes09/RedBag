@@ -5,8 +5,8 @@
     <string name="no_connectivity_message">Please Connect to Internet</string>
 
     <plurals name="bloodBag">
-        <item quantity="one">%d Bag</item>
-        <item quantity="other">%d Bags</item>
+        <item quantity="one">%d bag</item>
+        <item quantity="other">%d bags</item>
     </plurals>
 
     <string name="lorem">

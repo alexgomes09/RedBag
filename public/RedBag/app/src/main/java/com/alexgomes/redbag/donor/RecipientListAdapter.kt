@@ -1,6 +1,7 @@
 package com.alexgomes.redbag.donor
 
 import android.content.Context
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -57,5 +58,12 @@ class RecipientListAdapter(var context: Context,
         var tvNumberOfBags = itemView.findViewById<CustomTextView>(R.id.tvNumberOfBags)
         var tvPosted = itemView.findViewById<CustomTextView>(R.id.tvPosted)
         var tvBloodGroup = itemView.findViewById<CustomTextView>(R.id.tvBloodGroup)
+
+        init {
+            itemView.setOnClickListener {
+                val ft = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                BloodRequestListDetailDialog.newInstance(listOfBloodPost[adapterPosition]).show(ft,null)
+            }
+        }
     }
 }

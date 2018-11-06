@@ -36,6 +36,7 @@ class Util {
         const val BASE_URL: String = "https://red-bag.herokuapp.com/"
         const val minAgeToDonateBlood = 17
         const val maxAgeToDonateBlood = 99
+        const val dialogDimAmount = 0.7f
 
 
         fun checkForInternet(context: Context): Boolean {

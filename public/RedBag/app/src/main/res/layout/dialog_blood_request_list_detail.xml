@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+
+    <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/t1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="10dp"
+        android:text="Name: "
+        android:textSize="16sp"
+        app:custom_font="@string/font_bold"
+        tools:text="Name" />
+
+    <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/recipientName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/t4"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="Alex Gomes" />
+
+    <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/t2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:text="Needs: "
+        android:textSize="16sp"
+        app:custom_font="@string/font_bold"
+        app:layout_constraintTop_toBottomOf="@id/t1"
+        tools:text="Needs" />
+
+    <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/recipientBloodRequire"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/recipientName"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recipientName"
+        tools:text="1 bag of blood" />
+
+    <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/t3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingRight="10dp"
+        android:text="Age: "
+        android:textSize="16sp"
+        app:custom_font="@string/font_bold"
+        app:layout_constraintTop_toBottomOf="@id/t2"
+        tools:text="Age" />
+
+    <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/recipientAge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingBottom="5dp"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/recipientBloodRequire"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recipientBloodRequire"
+        tools:text="20 years" />
+
+    <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/t4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingRight="10dp"
+        android:text="Address: "
+        android:textSize="16sp"
+        app:custom_font="@string/font_bold"
+        app:layout_constraintTop_toBottomOf="@id/t3"
+        tools:text="Address" />
+
+    <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/recipientAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:paddingBottom="5dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/recipientAge"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recipientAge"
+        tools:text="321 South kafrul bangla Motor, Purbo pash, Dhaka 1206, Bangladesh" />
+
+    <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/t5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingRight="10dp"
+        android:text="Phone: "
+        android:textSize="16sp"
+        app:custom_font="@string/font_bold"
+        app:layout_constraintTop_toBottomOf="@id/recipientAddress"
+        tools:text="Phone " />
+
+    <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/recipientPhoneNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingBottom="5dp"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/recipientAddress"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recipientAddress"
+        tools:text="01858736219" />
+
+    <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/t6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingRight="10dp"
+        android:text="Email: "
+        android:textSize="16sp"
+        app:custom_font="@string/font_bold"
+        app:layout_constraintTop_toBottomOf="@id/recipientPhoneNumber"
+        tools:text="Email " />
+
+    <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/recipientEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingBottom="5dp"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/recipientPhoneNumber"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recipientPhoneNumber"
+        tools:text="a@a.com" />
+</android.support.constraint.ConstraintLayout>
