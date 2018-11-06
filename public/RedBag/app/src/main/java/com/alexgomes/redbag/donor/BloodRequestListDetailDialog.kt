@@ -65,7 +65,7 @@ class BloodRequestListDetailDialog : AppCompatDialogFragment() {
         recipientAge.text = "${bloodRequestItem.age} years old"
         recipientAddress.text = bloodRequestItem.address
         recipientPhoneNumber.text = bloodRequestItem.phoneNumber
-        recipientEmail.text = bloodRequestItem.emailAddress
+        recipientEmail.text = bloodRequestItem.email
 
     }
 
