@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
-import com.alexgomes.redbag.PrefUtil
 import com.alexgomes.redbag.R
+import com.alexgomes.redbag.util.PrefUtil
 
 /**
  * Created by agomes on 9/8/18.

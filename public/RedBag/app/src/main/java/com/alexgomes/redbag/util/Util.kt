@@ -1,4 +1,4 @@
-package com.alexgomes.redbag
+package com.alexgomes.redbag.util
 
 import android.content.Context
 import android.content.res.Resources
@@ -8,6 +8,8 @@ import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import com.alexgomes.redbag.R
+import com.alexgomes.redbag.RedBagApplication
 
 
 /**

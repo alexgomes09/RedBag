@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.alexgomes.redbag.PrefUtil
 import com.alexgomes.redbag.R
+import com.alexgomes.redbag.util.PrefUtil
 import kotlinx.android.synthetic.main.activity_slide_screen.*
 
 class SlideScreenActivity : AppCompatActivity() {

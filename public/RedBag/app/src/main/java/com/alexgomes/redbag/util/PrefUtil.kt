@@ -1,4 +1,6 @@
-package com.alexgomes.redbag
+package com.alexgomes.redbag.util
+
+import com.alexgomes.redbag.RedBagApplication
 
 /**
  * Created by agomes on 9/17/18.

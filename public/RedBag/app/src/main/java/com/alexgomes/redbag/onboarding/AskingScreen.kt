@@ -4,11 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
-import com.alexgomes.redbag.PrefUtil
 import com.alexgomes.redbag.R
 import com.alexgomes.redbag.donor.BloodRequestListActivity
 import com.alexgomes.redbag.donor.DonorAuthenticationActivity
 import com.alexgomes.redbag.recipient.RecipientRequestBloodActivity
+import com.alexgomes.redbag.util.PrefUtil
 import kotlinx.android.synthetic.main.activity_asking.*
 
 /**

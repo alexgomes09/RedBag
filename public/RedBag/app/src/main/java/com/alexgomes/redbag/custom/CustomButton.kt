@@ -7,7 +7,7 @@ import android.graphics.drawable.GradientDrawable
 import android.support.v7.widget.AppCompatButton
 import android.util.AttributeSet
 import com.alexgomes.redbag.R
-import com.alexgomes.redbag.dp
+import com.alexgomes.redbag.util.dp
 
 
 /**

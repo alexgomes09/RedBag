@@ -2,10 +2,10 @@ package com.alexgomes.redbag.networking
 
 import com.alexgomes.redbag.BuildConfig
 import com.alexgomes.redbag.RedBagApplication
-import com.alexgomes.redbag.Util
 import com.alexgomes.redbag.networking.generic.APIError
 import com.alexgomes.redbag.networking.reqest.BloodRequestPosts
 import com.alexgomes.redbag.networking.response.DonorLoginRegisterResponse
+import com.alexgomes.redbag.util.Util
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor

@@ -8,7 +8,7 @@ import android.support.v4.view.ViewCompat
 import android.util.AttributeSet
 import android.util.TypedValue
 import com.alexgomes.redbag.R
-import com.alexgomes.redbag.dp
+import com.alexgomes.redbag.util.dp
 
 
 /**

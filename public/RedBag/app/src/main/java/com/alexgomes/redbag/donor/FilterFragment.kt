@@ -6,9 +6,9 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.alexgomes.redbag.BloodGroup
 import com.alexgomes.redbag.R
 import com.alexgomes.redbag.custom.BubbleFilterTextView
+import com.alexgomes.redbag.util.BloodGroup
 import kotlinx.android.synthetic.main.fragment_filter.*
 
 

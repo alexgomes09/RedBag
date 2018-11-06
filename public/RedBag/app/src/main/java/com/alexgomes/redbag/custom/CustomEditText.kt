@@ -10,7 +10,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.alexgomes.redbag.R
-import com.alexgomes.redbag.dp
+import com.alexgomes.redbag.util.dp
 import kotlinx.android.synthetic.main.partial_edit_text_with_label.view.*
 
 

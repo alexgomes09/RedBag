@@ -8,19 +8,18 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.alexgomes.redbag.R
-import com.alexgomes.redbag.Util
 import com.alexgomes.redbag.custom.EndlessRecyclerViewScrollListener
-import com.alexgomes.redbag.dp
 import com.alexgomes.redbag.networking.RestAdapter
 import com.alexgomes.redbag.networking.generic.PostModel
 import com.alexgomes.redbag.networking.reqest.BloodRequestPosts
+import com.alexgomes.redbag.util.Util
+import com.alexgomes.redbag.util.dp
 import kotlinx.android.synthetic.main.activity_blood_request_list.*
 import kotlinx.android.synthetic.main.partial_appbar.*
 import kotlinx.android.synthetic.main.partial_loading_screen.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
 
 /**
  * Created by agomes on 9/18/18.

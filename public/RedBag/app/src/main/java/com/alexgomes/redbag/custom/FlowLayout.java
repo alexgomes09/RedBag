@@ -3,11 +3,8 @@ package com.alexgomes.redbag.custom;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.alexgomes.redbag.Util;
 
 /**
  * Created by agomes on 10/14/18.
