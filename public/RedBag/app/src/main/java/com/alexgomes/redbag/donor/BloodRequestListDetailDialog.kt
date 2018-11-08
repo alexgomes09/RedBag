@@ -51,7 +51,7 @@ class BloodRequestListDetailDialog : AppCompatDialogFragment() {
 
     override fun onStart() {
         super.onStart()
-        val width = (resources.displayMetrics.widthPixels * 0.95f).toInt() //span 90% of screen width
+        val width = (resources.displayMetrics.widthPixels * 0.95f).toInt() //span 95% of screen width
         val height = ConstraintLayout.LayoutParams.WRAP_CONTENT
         dialog.window!!.setLayout(width, height)
     }
