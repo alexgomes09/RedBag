@@ -1,17 +1,18 @@
 package com.alexgomes.redbag.donor
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.app.AppCompatDialogFragment
 import android.text.util.Linkify
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.util.Log
+import android.view.*
+import android.widget.ImageView
 import com.alexgomes.redbag.R
 import com.alexgomes.redbag.networking.generic.PostModel
 import com.alexgomes.redbag.util.Util
@@ -60,9 +61,11 @@ class BloodRequestListDetailDialog : AppCompatDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val params = divider.layoutParams as ConstraintLayout.LayoutParams
+
 
         recipientName.text = bloodRequestItem.name
-        recipientBloodRequire.text = context.resources.getQuantityString(R.plurals.bloodBag, bloodRequestItem.numberOfBags, bloodRequestItem.numberOfBags) + " of blood"
+        recipientBloodRequire.text = context.resources.getQuantityString(R.plurals.bloodBag, bloodRequestItem.numberOfBags, bloodRequestItem.numberOfBags)
         recipientAge.text = "${bloodRequestItem.age} years old"
 
         if (!bloodRequestItem.address.isNullOrEmpty()) {
@@ -76,6 +79,7 @@ class BloodRequestListDetailDialog : AppCompatDialogFragment() {
             recipientPhoneNumber.visibility = View.VISIBLE
             recipientPhoneNumber.text = bloodRequestItem.phoneNumber
             Linkify.addLinks(recipientPhoneNumber, Linkify.PHONE_NUMBERS)
+            params.topToBottom = recipientPhoneNumber.id
         }
 
         if (!bloodRequestItem.email.isNullOrEmpty()) {
@@ -83,6 +87,37 @@ class BloodRequestListDetailDialog : AppCompatDialogFragment() {
             recipientEmail.visibility = View.VISIBLE
             recipientEmail.text = bloodRequestItem.email
             Linkify.addLinks(recipientEmail, Linkify.EMAIL_ADDRESSES)
+            params.topToBottom = recipientEmail.id
+        }
+
+        divider.requestLayout()
+
+        btn_call.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:"+bloodRequestItem.phoneNumber)
+            startActivity(intent)
+        }
+
+        btn_share.setOnClickListener {
+            Log.v("==TAG==", "BloodRequestListDetailDialog.onViewCreated HELLO")
+        }
+
+        btn_call.setOnTouchListener { view, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_DOWN) {
+                (view as ImageView).setImageResource(R.drawable.ic_call_pressed)
+            } else if (motionEvent.action == MotionEvent.ACTION_UP || motionEvent.action == MotionEvent.ACTION_CANCEL) {
+                (view as ImageView).setImageResource(R.drawable.ic_call)
+            }
+            return@setOnTouchListener false
+        }
+
+        btn_share.setOnTouchListener { view, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_DOWN) {
+                (view as ImageView).setImageResource(R.drawable.ic_facebook_pressed)
+            } else if (motionEvent.action == MotionEvent.ACTION_UP || motionEvent.action == MotionEvent.ACTION_CANCEL) {
+                (view as ImageView).setImageResource(R.drawable.ic_facebook)
+            }
+            return@setOnTouchListener false
         }
     }
 
@@ -93,6 +128,4 @@ class BloodRequestListDetailDialog : AppCompatDialogFragment() {
         gd.cornerRadius = resources.getDimension(R.dimen.rounded_corner)
         view.background = gd
     }
-
-
 }

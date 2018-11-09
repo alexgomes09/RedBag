@@ -38,5 +38,4 @@ public class LoadingDialog {
             isShowing = false;
         }
     }
-
 }

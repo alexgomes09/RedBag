@@ -30,7 +30,7 @@ class FilterFragment : Fragment() {
         fun newInstance(selectedFilter: ArrayList<String>, filterSort: String): FilterFragment {
             val fragment = FilterFragment()
 
-            val args: Bundle = Bundle()
+            val args = Bundle()
             args.putStringArrayList("selectedFilter", selectedFilter)
             args.putString("selectedSort", filterSort)
             fragment.arguments = args

@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="15dp">
@@ -124,7 +125,7 @@
 
     <com.alexgomes.redbag.custom.CustomTextView
         android:id="@+id/recipientPhoneNumber"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
@@ -132,9 +133,9 @@
         android:textColor="@android:color/black"
         android:textSize="17sp"
         android:visibility="gone"
+        android:autoLink="phone"
         app:layout_constraintBaseline_toBaselineOf="@id/t5"
         app:layout_constraintLeft_toLeftOf="@id/recipientAddress"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/recipientAddress"
         tools:text="01858736219" />
 
@@ -153,7 +154,7 @@
 
     <com.alexgomes.redbag.custom.CustomTextView
         android:id="@+id/recipientEmail"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
@@ -163,6 +164,36 @@
         android:visibility="gone"
         app:layout_constraintBaseline_toBaselineOf="@id/t6"
         app:layout_constraintLeft_toLeftOf="@id/recipientPhoneNumber"
-        app:layout_constraintRight_toRightOf="parent"
         tools:text="a@a.com" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/light_gray"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:id="@+id/btn_call"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/btn_share"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:srcCompat="@drawable/ic_call" />
+
+    <ImageView
+        android:id="@+id/btn_share"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toRightOf="@+id/btn_call"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:srcCompat="@drawable/ic_facebook" />
 </android.support.constraint.ConstraintLayout>
