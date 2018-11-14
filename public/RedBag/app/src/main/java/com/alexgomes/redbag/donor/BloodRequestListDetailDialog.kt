@@ -10,7 +10,6 @@ import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.app.AppCompatDialogFragment
 import android.text.util.Linkify
-import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import com.alexgomes.redbag.R
@@ -99,7 +98,7 @@ class BloodRequestListDetailDialog : AppCompatDialogFragment() {
         }
 
         btn_share.setOnClickListener {
-            Log.v("==TAG==", "BloodRequestListDetailDialog.onViewCreated HELLO")
+            Util.showToast(context,"Not implemented yet")
         }
 
         btn_call.setOnTouchListener { view, motionEvent ->

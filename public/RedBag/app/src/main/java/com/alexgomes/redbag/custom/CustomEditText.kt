@@ -1,6 +1,8 @@
 package com.alexgomes.redbag.custom
 
 import android.content.Context
+import android.os.Bundle
+import android.os.Parcelable
 import android.text.InputFilter
 import android.text.InputType
 import android.text.TextUtils
@@ -77,6 +79,8 @@ class CustomEditText : LinearLayout {
                     edit_text.transformationMethod = PasswordTransformationMethod.getInstance()
                 }
                 "numberPassword" -> inputType = InputType.TYPE_NUMBER_VARIATION_PASSWORD or InputType.TYPE_CLASS_NUMBER
+                "textPersonName" -> inputType = InputType.TYPE_TEXT_VARIATION_PERSON_NAME
+                "textCapWords" -> inputType = InputType.TYPE_TEXT_FLAG_CAP_WORDS
                 "phone" -> inputType = InputType.TYPE_CLASS_PHONE
                 else -> inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
             }
@@ -98,6 +102,12 @@ class CustomEditText : LinearLayout {
 
         typedArray.recycle()
 
+    }
+
+    override fun setOnClickListener(l: OnClickListener?) {
+        edit_text.isFocusable = false
+        edit_text.isFocusableInTouchMode = false
+        edit_text.setOnClickListener(l)
     }
 
     override fun onAttachedToWindow() {
@@ -127,19 +137,19 @@ class CustomEditText : LinearLayout {
         edit_text.filters = FilterArray
     }
 
-//    override fun onSaveInstanceState(): Parcelable {
-//        val bundle = Bundle()
-//        bundle.putString("text", edit_text.text.toString())
-//        super.onSaveInstanceState()
-//        return bundle
-//    }
-//
-//    override fun onRestoreInstanceState(state: Parcelable?) {
-//        if (state is Bundle) {
-//            val bundle = state
-//            setText(bundle.getString("text"))
-//        }
-//        super.onRestoreInstanceState(state)
-//    }
+    override fun onSaveInstanceState(): Parcelable {
+        val bundle = Bundle()
+        bundle.putString("text", edit_text.text.toString())
+        super.onSaveInstanceState()
+        return bundle
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable?) {
+        if (state is Bundle) {
+            val bundle = state
+            setText(bundle.getString("text"))
+        }
+        super.onRestoreInstanceState(state)
+    }
 
 }

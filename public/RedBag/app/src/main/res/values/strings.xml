@@ -23,4 +23,5 @@ In facilisis neque velit, ut volutpat sapien rhoncus quis. Cras fringilla viverr
 Nam sit amet hendrerit lorem. Etiam sapien erat, tempus ac tortor vel, molestie aliquet lorem. Aliquam faucibus lorem non libero faucibus, eget suscipit elit feugiat. Proin posuere elit id pretium malesuada. Integer posuere rutrum leo sit amet luctus. Nullam facilisis augue quis sapien dapibus euismod. Nam ante lorem, sagittis eu erat in, interdum congue elit. Pellentesque aliquam cursus erat quis sollicitudin. Morbi vulputate elit auctor arcu consectetur luctus. Phasellus efficitur interdum eros at commodo. Integer mattis est ac mi imperdiet, vitae sodales justo posuere. Nullam posuere lectus eget enim porttitor, eget maximus odio condimentum. Cras maximus lectus pellentesque posuere scelerisque. Maecenas mollis dui vel ipsum convallis, non gravida tortor laoreet. Vivamus elementum ultrices diam, in egestas lacus accumsan quis. Maecenas sit amet erat leo.
 
     </string>
+    <string name="space_letter"> abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
 </resources>

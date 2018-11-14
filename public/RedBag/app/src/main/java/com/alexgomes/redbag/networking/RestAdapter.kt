@@ -70,7 +70,7 @@ object RestAdapter {
         redBagApiService.loginWithEmail(emailAddress, password).enqueue(onResponseListener)
     }
 
-//    fun requestBlood(requestGetBloodModel: BloodRequestPosts.Posts, onResponseListener: Callback<Void>) {
+    //fun requestBlood(requestGetBloodModel: BloodRequestPosts.Posts, onResponseListener: Callback<Void>) {
 //        we check internet connection before making every network call
 //        if (!Util.checkForInternet(RedBagApplication.applicationContext())) return
 //        redBagApiService.requestBlood(requestGetBloodModel).enqueue(onResponseListener)
