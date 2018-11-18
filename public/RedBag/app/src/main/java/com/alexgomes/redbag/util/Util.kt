@@ -3,13 +3,11 @@ package com.alexgomes.redbag.util
 import android.content.Context
 import android.content.res.Resources
 import android.net.ConnectivityManager
-import android.provider.Settings
 import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.alexgomes.redbag.R
-import com.alexgomes.redbag.RedBagApplication
 
 
 /**
@@ -33,7 +31,7 @@ class Util {
     companion object {
         const val MAX_RESPONSE_LIMIT = 30
         const val networkTimeOut = 30L
-        const val BASE_URL: String = "https://red-bag.herokuapp.com/"
+        const val BASE_URL: String = "http://localhost:8080/" //"https://red-bag.herokuapp.com/"
         const val minAgeToDonateBlood = 17
         const val maxAgeToDonateBlood = 99
         const val dialogDimAmount = 0.7f
@@ -61,11 +59,6 @@ class Util {
             //Pass any view
             val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken, 0)
-        }
-
-        fun getAndroidUniqueId(): String {
-            val androidId = Settings.Secure.getString(RedBagApplication.applicationContext().contentResolver, Settings.Secure.ANDROID_ID)
-            return androidId
         }
 
         fun isValidEmail(email: String): Boolean = email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()

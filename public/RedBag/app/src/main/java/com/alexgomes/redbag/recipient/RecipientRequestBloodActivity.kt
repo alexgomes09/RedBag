@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import com.alexgomes.redbag.R
 import com.alexgomes.redbag.networking.RestAdapter
+import com.alexgomes.redbag.networking.generic.BaseModel
 import com.alexgomes.redbag.networking.generic.Location
 import com.alexgomes.redbag.networking.generic.PostModel
 import com.alexgomes.redbag.util.BloodGroup
@@ -94,14 +95,14 @@ class RecipientRequestBloodActivity : AppCompatActivity() {
                     etEmail.getText(),
                     etAge.getText().toInt(), Location(mutableListOf(-79.273838,43.744313)))
 
-            RestAdapter.requestBlood(requestPost, object : Callback<Void> {
-                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+            RestAdapter.requestBlood(requestPost, object : Callback<BaseModel> {
+                override fun onResponse(call: Call<BaseModel>, response: Response<BaseModel>) {
                     response.isSuccessful.let {
-                        Util.showToast(this@RecipientRequestBloodActivity, "Blood Request Success")
+                        Util.showToast(this@RecipientRequestBloodActivity, response.body()!!.message)
                     }
                 }
 
-                override fun onFailure(call: Call<Void>, t: Throwable) {
+                override fun onFailure(call: Call<BaseModel>, t: Throwable) {
                     call.cancel()
                     Util.showToast(this@RecipientRequestBloodActivity, t.localizedMessage)
                     Log.v("==TAG==", "RecipientRequestBloodActivity.onFailure " +t.localizedMessage)

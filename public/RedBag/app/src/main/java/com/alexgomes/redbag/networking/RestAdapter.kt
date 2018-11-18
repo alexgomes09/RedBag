@@ -2,7 +2,7 @@ package com.alexgomes.redbag.networking
 
 import com.alexgomes.redbag.BuildConfig
 import com.alexgomes.redbag.RedBagApplication
-import com.alexgomes.redbag.networking.generic.APIError
+import com.alexgomes.redbag.networking.generic.BaseModel
 import com.alexgomes.redbag.networking.generic.PostModel
 import com.alexgomes.redbag.networking.reqest.BloodRequestPosts
 import com.alexgomes.redbag.networking.response.DonorLoginRegisterResponse
@@ -47,14 +47,14 @@ object RestAdapter {
         redBagApiService = retrofit.create(RedBagApiService::class.java)
     }
 
-    fun parseError(response: Response<*>): APIError {
-        val converter: Converter<ResponseBody, APIError> = retrofit.responseBodyConverter(APIError::class.java, arrayOfNulls(0))
-        val error: APIError
+    fun parseError(response: Response<*>): BaseModel {
+        val converter: Converter<ResponseBody, BaseModel> = retrofit.responseBodyConverter(BaseModel::class.java, arrayOfNulls(0))
+        val error: BaseModel
 
         try {
             error = converter.convert(response.errorBody())
         } catch (e: IOException) {
-            return APIError(false, "Something went wrong! please try again")
+            return BaseModel(false, "Something went wrong! please try again")
         }
         return error
     }
@@ -71,7 +71,7 @@ object RestAdapter {
         redBagApiService.loginWithEmail(emailAddress, password).enqueue(onResponseListener)
     }
 
-    fun requestBlood(requestPostModel: PostModel, onResponseListener: Callback<Void>) {
+    fun requestBlood(requestPostModel: PostModel, onResponseListener: Callback<BaseModel>) {
         //we check internet connection before making every network call
         if (!Util.checkForInternet(RedBagApplication.applicationContext())) return
         redBagApiService.requestBlood(requestPostModel).enqueue(onResponseListener)

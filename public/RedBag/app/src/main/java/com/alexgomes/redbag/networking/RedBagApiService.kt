@@ -1,5 +1,6 @@
 package com.alexgomes.redbag.networking
 
+import com.alexgomes.redbag.networking.generic.BaseModel
 import com.alexgomes.redbag.networking.generic.PostModel
 import com.alexgomes.redbag.networking.reqest.BloodRequestPosts
 import com.alexgomes.redbag.networking.response.DonorLoginRegisterResponse
@@ -29,5 +30,5 @@ interface RedBagApiService {
                             @Query("sort") sort: String): Call<BloodRequestPosts>
 
     @POST("/postBloodRequest")
-    fun requestBlood(@Body requestPosts: PostModel): Call<Void>
+    fun requestBlood(@Body requestPosts: PostModel): Call<BaseModel>
 }

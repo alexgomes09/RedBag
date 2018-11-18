@@ -33,14 +33,16 @@ function postRoutes(app) {
         newPost.email = req.body.email;
         newPost.age = req.body.age;
 
-        if (typeof(req.body.longitude) == 'number' && typeof(req.body.latitude) == 'number') {
+
+        if (typeof(req.body.location.coordinates[0]) == 'number' && 
+            typeof(req.body.location.coordinates[1]) == 'number') {
             newPost.location = {
                 type: "Point",
-                coordinates: [req.body.longitude, req.body.latitude]
+                coordinates: req.body.location.coordinates
             }
         }
 
-        console.log(JSON.stringify(newPost, null, 2))
+        // console.log(JSON.stringify(newPost, null, 2))
 
         newPost.save(function(err, post) {
             if (err) {
