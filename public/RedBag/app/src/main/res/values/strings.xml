@@ -9,19 +9,20 @@
         <item quantity="other">%d bags</item>
     </plurals>
 
-    <string name="lorem">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at orci risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas consectetur nibh non risus consectetur lobortis. Curabitur ut orci odio. Quisque faucibus magna quis risus lacinia vehicula. Etiam ut sem quis ex varius laoreet nec sit amet velit. Nulla ornare mollis nunc non interdum. Phasellus sit amet cursus sapien. Nunc luctus est sit amet diam molestie, a accumsan nisl ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque ut dolor ex. Sed et dui imperdiet diam dignissim pretium.
-
-Nulla facilisi. Etiam lacinia dictum ex, in tincidunt lectus consequat a. Nullam et pretium quam, at luctus tellus. In urna felis, cursus eu eros cursus, rhoncus posuere nisi. Integer pellentesque sit amet velit non aliquam. Aliquam erat volutpat. Pellentesque dolor turpis, bibendum vel eros vel, condimentum ultricies felis. Suspendisse faucibus eros eleifend, luctus purus id, scelerisque ex. Cras vitae nunc est. Donec in laoreet ex. Vivamus sed leo neque. Donec a pellentesque velit. Morbi sed pretium nisi.
-
-Etiam eget metus nulla. Aliquam erat volutpat. Donec pulvinar pulvinar nulla nec interdum. Nullam nibh nisl, finibus id mi id, imperdiet efficitur leo. Cras luctus leo non rutrum vestibulum. Duis mollis faucibus urna sit amet sodales. Nunc justo metus, tincidunt at dapibus in, imperdiet a purus. Suspendisse consequat pellentesque diam, ac rutrum nisl mollis ut. Nunc posuere turpis diam, interdum tempus diam fermentum auctor. Nunc volutpat tincidunt quam ut interdum.
-
-Donec placerat eleifend elementum. Pellentesque eros dolor, cursus et neque et, dictum blandit massa. Suspendisse potenti. Sed ullamcorper fringilla pellentesque. Nam ornare, purus in vestibulum eleifend, risus neque consequat arcu, ac accumsan magna orci sit amet dolor. Nunc fringilla auctor turpis, sed ultricies neque porta eu. Donec rhoncus pretium ex at ullamcorper. Vivamus placerat, mi porttitor volutpat egestas, nibh erat mattis erat, ac luctus diam orci et ex. Donec leo neque, gravida at pharetra non, viverra sit amet nisl. Integer lobortis purus in ligula convallis, nec ullamcorper purus condimentum. Nulla facilisi. Nulla at libero tellus. Ut suscipit vel ex eu viverra. Vestibulum cursus dui tincidunt, tempus leo a, condimentum diam. Aliquam sagittis nec metus ut faucibus.
-
-In facilisis neque velit, ut volutpat sapien rhoncus quis. Cras fringilla viverra nunc eget sollicitudin. Curabitur non eleifend est. Cras ac dignissim mi. Proin blandit dapibus lacus, quis vulputate eros laoreet ac. Suspendisse potenti. Cras eget elit vitae nibh vulputate egestas eu sed massa. Pellentesque nulla risus, ultrices pulvinar euismod a, consequat vitae metus.
-
-Nam sit amet hendrerit lorem. Etiam sapien erat, tempus ac tortor vel, molestie aliquet lorem. Aliquam faucibus lorem non libero faucibus, eget suscipit elit feugiat. Proin posuere elit id pretium malesuada. Integer posuere rutrum leo sit amet luctus. Nullam facilisis augue quis sapien dapibus euismod. Nam ante lorem, sagittis eu erat in, interdum congue elit. Pellentesque aliquam cursus erat quis sollicitudin. Morbi vulputate elit auctor arcu consectetur luctus. Phasellus efficitur interdum eros at commodo. Integer mattis est ac mi imperdiet, vitae sodales justo posuere. Nullam posuere lectus eget enim porttitor, eget maximus odio condimentum. Cras maximus lectus pellentesque posuere scelerisque. Maecenas mollis dui vel ipsum convallis, non gravida tortor laoreet. Vivamus elementum ultrices diam, in egestas lacus accumsan quis. Maecenas sit amet erat leo.
-
-    </string>
     <string name="space_letter"> abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+
+
+    <string-array name="random_quote">
+        <item>\"Stay healthy, active and hydrated\"</item>
+        <item>\"Bring a life back to power. Make blood donation your responsibility\"</item>
+        <item>\"Every blood donor is a life saver.\"</item>
+        <item>\"Tears of a mother cannot save her Child. But your Blood can, consider blood donation.\"</item>
+        <item>\"Your blood donation can give a precious smile to someone’s face.\"</item>
+        <item>\"Blood donation is the real act of humanity.\"</item>
+        <item>\"Donate your blood for a reason, let the reason to be life.\"</item>
+        <item>\"There is a hope of life to someone in your blood donation.\"</item>
+        <item>\"Blood is a life, pass it on!\"</item>
+        <item>\"Your blood is precious : Donate, save a life &amp; make it Divine.\"</item>
+        <item>\"Blood is regenerated after few months but life is not, Please donate blood.\"</item>
+    </string-array>
 </resources>

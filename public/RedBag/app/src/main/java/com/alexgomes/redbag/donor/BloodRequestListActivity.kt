@@ -30,7 +30,7 @@ class BloodRequestListActivity : AppCompatActivity(), FilterFragment.OnFilterSet
     private lateinit var adapter: RecipientListAdapter
     private val listOfBloodPost: MutableList<PostModel> = mutableListOf()
     private var filterBloodGroup: ArrayList<String> = arrayListOf()
-    private var filterSort:String = "desc" // recent to old
+    private var filterSort: String = "desc" // recent to old
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +64,7 @@ class BloodRequestListActivity : AppCompatActivity(), FilterFragment.OnFilterSet
         btn_topbar_right.setOnClickListener {
             supportFragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_right)
-                    .replace(android.R.id.content, FilterFragment.newInstance(filterBloodGroup,filterSort))
+                    .replace(android.R.id.content, FilterFragment.newInstance(filterBloodGroup, filterSort))
                     .addToBackStack(null)
                     .commit()
         }
@@ -76,28 +76,32 @@ class BloodRequestListActivity : AppCompatActivity(), FilterFragment.OnFilterSet
                 filterBloodGroup,
                 filterSort,
                 object : Callback<BloodRequestPosts> {
-            override fun onResponse(call: Call<BloodRequestPosts>, response: Response<BloodRequestPosts>) {
-                loading.visibility = View.GONE
-                swipeRefreshLayout.isRefreshing = false
+                    override fun onResponse(call: Call<BloodRequestPosts>, response: Response<BloodRequestPosts>) {
+                        loading.visibility = View.GONE
+                        swipeRefreshLayout.isRefreshing = false
 
-                if (response.isSuccessful) {
-                    if (response.body()!!.posts.isEmpty()) {
-                        Util.showToast(this@BloodRequestListActivity, "Empty posts")
-                        return
+                        if (response.isSuccessful) {
+
+                            listOfBloodPost.addAll(response.body()!!.posts)
+                            adapter.notifyItemInserted(listOfBloodPost.size)
+
+                            if (listOfBloodPost.size <= 0) {
+                                empty_view.visibility = View.VISIBLE
+                                txt_quote.text = Util.getRandomQuote(this@BloodRequestListActivity)
+                            }else{
+                                empty_view.visibility = View.GONE
+                            }
+                        } else {
+                            Util.showToast(this@BloodRequestListActivity, RestAdapter.parseError(response).message)
+                        }
                     }
-                    listOfBloodPost.addAll(response.body()!!.posts)
-                    adapter.notifyItemInserted(listOfBloodPost.size)
-                } else {
-                    Util.showToast(this@BloodRequestListActivity, RestAdapter.parseError(response).message)
-                }
-            }
 
-            override fun onFailure(call: Call<BloodRequestPosts>, t: Throwable) {
-                loading.visibility = View.GONE
-                swipeRefreshLayout.isRefreshing = false
-                Util.showToast(this@BloodRequestListActivity, "Error retrieving data")
-            }
-        })
+                    override fun onFailure(call: Call<BloodRequestPosts>, t: Throwable) {
+                        loading.visibility = View.GONE
+                        swipeRefreshLayout.isRefreshing = false
+                        Util.showToast(this@BloodRequestListActivity, "Error retrieving data")
+                    }
+                })
     }
 
     override fun filterSet(selectedSort: String, selectedFilter: ArrayList<String>) {

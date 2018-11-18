@@ -10,8 +10,10 @@ import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.app.AppCompatDialogFragment
 import android.text.util.Linkify
-import android.view.*
-import android.widget.ImageView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
 import com.alexgomes.redbag.R
 import com.alexgomes.redbag.networking.generic.PostModel
 import com.alexgomes.redbag.util.Util
@@ -92,34 +94,17 @@ class BloodRequestListDetailDialog : AppCompatDialogFragment() {
         divider.requestLayout()
 
         btn_call.setOnClickListener {
+            dismiss()
             val intent = Intent(Intent.ACTION_DIAL)
             intent.data = Uri.parse("tel:"+bloodRequestItem.phoneNumber)
             startActivity(intent)
         }
 
         btn_share.setOnClickListener {
+            //TODO: need to dismiss the dialog
             Util.showToast(context,"Not implemented yet")
         }
-
-        btn_call.setOnTouchListener { view, motionEvent ->
-            if (motionEvent.action == MotionEvent.ACTION_DOWN) {
-                (view as ImageView).setImageResource(R.drawable.ic_call_pressed)
-            } else if (motionEvent.action == MotionEvent.ACTION_UP || motionEvent.action == MotionEvent.ACTION_CANCEL) {
-                (view as ImageView).setImageResource(R.drawable.ic_call)
-            }
-            return@setOnTouchListener false
-        }
-
-        btn_share.setOnTouchListener { view, motionEvent ->
-            if (motionEvent.action == MotionEvent.ACTION_DOWN) {
-                (view as ImageView).setImageResource(R.drawable.ic_facebook_pressed)
-            } else if (motionEvent.action == MotionEvent.ACTION_UP || motionEvent.action == MotionEvent.ACTION_CANCEL) {
-                (view as ImageView).setImageResource(R.drawable.ic_facebook)
-            }
-            return@setOnTouchListener false
-        }
     }
-
 
     private fun setBackgroundGradient(view: View) {
         val gd = GradientDrawable()

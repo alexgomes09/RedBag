@@ -8,6 +8,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.alexgomes.redbag.R
+import java.util.*
 
 
 /**
@@ -34,8 +35,7 @@ class Util {
         const val BASE_URL: String = "http://localhost:8080/" //"https://red-bag.herokuapp.com/"
         const val minAgeToDonateBlood = 17
         const val maxAgeToDonateBlood = 99
-        const val dialogDimAmount = 0.7f
-
+        const val dialogDimAmount = 0.9f
 
         fun checkForInternet(context: Context): Boolean {
             fun hasNetworkConnectivity(context: Context): Boolean {
@@ -62,6 +62,11 @@ class Util {
         }
 
         fun isValidEmail(email: String): Boolean = email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+
+        fun getRandomQuote(context: Context): String {
+            val array = context.resources.getStringArray(R.array.random_quote)
+            return array[Random().nextInt(array.size)]
+        }
     }
 }
 
