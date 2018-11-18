@@ -32,6 +32,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".recipient.RecipientRequestBloodActivity"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustResize"
             android:screenOrientation="portrait" />
         <activity
             android:name=".donor.BloodRequestListActivity"

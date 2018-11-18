@@ -123,7 +123,7 @@ class CustomEditText : LinearLayout {
         edit_text.setText(text)
     }
 
-    fun setError(error: CharSequence) {
+    fun setError(error: CharSequence?) {
         edit_text.error = error
     }
 

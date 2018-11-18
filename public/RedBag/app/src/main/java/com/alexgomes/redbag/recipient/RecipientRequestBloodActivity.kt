@@ -4,13 +4,19 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.ArrayAdapter
 import com.alexgomes.redbag.R
+import com.alexgomes.redbag.networking.RestAdapter
+import com.alexgomes.redbag.networking.generic.Location
+import com.alexgomes.redbag.networking.generic.PostModel
 import com.alexgomes.redbag.util.BloodGroup
 import com.alexgomes.redbag.util.Util
 import kotlinx.android.synthetic.main.activity_recipient_request_blood.*
-import kotlinx.android.synthetic.main.notification_template_lines_media.view.*
 import kotlinx.android.synthetic.main.partial_appbar.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * Created by agomes on 9/16/18.
@@ -46,55 +52,61 @@ class RecipientRequestBloodActivity : AppCompatActivity() {
             Util.hideKeyboard(btnSubmit)
 
             when {
-                etName.text.toString().trim().isEmpty() -> {
-                    etName.setError("Name field is required")
+                etName.getText().trim().isEmpty() -> {
+                    etName.requestFocus()
+                    etName.setError("Name is required")
                     return@setOnClickListener
                 }
-                etAge.text.toString().trim().isEmpty() -> {
-                    etAge.setError("Age field is required")
+                etAge.getText().trim().isEmpty() -> {
+                    etAge.setError("Age is required")
                     return@setOnClickListener
                 }
-                etBloodGroup.text.toString().trim().isEmpty() -> {
+                etBloodGroup.getText().trim().isEmpty() -> {
                     etBloodGroup.setError("Blood group is required")
                     return@setOnClickListener
                 }
-                etNumberOfBags.text.toString().trim().isEmpty() -> {
+                etNumberOfBags.getText().trim().isEmpty() -> {
                     etNumberOfBags.setError("Number of bags field is required")
                     return@setOnClickListener
                 }
-                etEmail.text.toString().trim().isEmpty() && etPhoneNumber.text.toString().trim().isEmpty() -> {
+                etAddress.getText().trim().isEmpty() -> {
+                    etAddress.requestFocus()
+                    etAddress.setError("Address is required")
+                    return@setOnClickListener
+                }
+                etPhoneNumber.getText().trim().isEmpty() && etEmail.getText().trim().isEmpty() -> {
                     Util.showToast(this@RecipientRequestBloodActivity, "At least one contact information required")
                     return@setOnClickListener
                 }
-                etEmail.text.toString().trim().isNotEmpty() && !Util.isValidEmail(etEmail.text.toString().trim()) -> {
+                etEmail.getText().trim().isNotEmpty() && !Util.isValidEmail(etEmail.getText().trim()) -> {
+                    etEmail.requestFocus()
                     etEmail.setError("Valid email required")
                     return@setOnClickListener
                 }
             }
 
-//            val requestBloodModel = PostModel(
-//                    etName.text.toString(),
-//                    etAge.text.toString().toInt(),
-//                    etBloodGroup.text.toString(),
-//                    previousBagSelected,
-//                    etAddress.text.toString(),
-//                    etPhoneNumber.text.toString(),
-//                    etEmail.text.toString(),""
-//            )
+            val requestPost = PostModel(
+                    etBloodGroup.getText(),
+                    previousBagSelected,
+                    etPhoneNumber.getText(),
+                    etName.getText(),
+                    etAddress.getText(),
+                    etEmail.getText(),
+                    etAge.getText().toInt(), Location(mutableListOf(-79.273838,43.744313)))
 
-//            RestAdapter.requestBlood(requestBloodModel, object : Callback<Void> {
-//                override fun onResponse(call: Call<Void>, response: Response<Void>) {
-//                    response.isSuccessful.let {
-//                        Util.showToast(this@RecipientRequestBloodActivity, "Blood Request Success")
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<Void>, t: Throwable) {
-//                    call.cancel()
-//                    Util.showToast(this@RecipientRequestBloodActivity, t.localizedMessage)
-//                    Log.v("==TAG==", "RecipientRequestBloodActivity.onFailure " +t.localizedMessage)
-//                }
-//            })
+            RestAdapter.requestBlood(requestPost, object : Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    response.isSuccessful.let {
+                        Util.showToast(this@RecipientRequestBloodActivity, "Blood Request Success")
+                    }
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    call.cancel()
+                    Util.showToast(this@RecipientRequestBloodActivity, t.localizedMessage)
+                    Log.v("==TAG==", "RecipientRequestBloodActivity.onFailure " +t.localizedMessage)
+                }
+            })
         }
     }
 
@@ -113,7 +125,7 @@ class RecipientRequestBloodActivity : AppCompatActivity() {
             val numberOfBagsSelected = arrayAdapter.getItem(which)
             etNumberOfBags.setText(numberOfBagsSelected.toString())
             previousBagSelected = which
-            etNumberOfBags.setError("")
+            etNumberOfBags.setError(null)
             dialog.dismiss()
         })
 
@@ -135,7 +147,7 @@ class RecipientRequestBloodActivity : AppCompatActivity() {
             val ageSelected = arrayAdapter.getItem(which)
             etAge.setText(ageSelected.toString())
             previousAgeSelected = which
-            etAge.setError("")
+            etAge.setError(null)
             dialog.dismiss()
         })
 
@@ -156,7 +168,7 @@ class RecipientRequestBloodActivity : AppCompatActivity() {
             val bloodGroupSelected = arrayAdapter.getItem(which)
             etBloodGroup.setText(bloodGroupSelected.toString())
             previousBloodGroupSelected = which
-            etBloodGroup.setError("")
+            etBloodGroup.setError(null)
             dialog.dismiss()
         })
 

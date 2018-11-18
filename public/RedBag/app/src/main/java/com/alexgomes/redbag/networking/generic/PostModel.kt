@@ -15,7 +15,7 @@ data class PostModel internal constructor(
         val address: String = "",
         val email: String = "",
         val age: Int = -1,
-        val location: Location,
+        val location: Location?,
         @SerializedName("created_at") val createdAt: String = "",
         @SerializedName("updated_at") val updatedAt: String = "") : Parcelable
 

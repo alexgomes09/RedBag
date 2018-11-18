@@ -1,12 +1,10 @@
 package com.alexgomes.redbag.networking
 
+import com.alexgomes.redbag.networking.generic.PostModel
 import com.alexgomes.redbag.networking.reqest.BloodRequestPosts
 import com.alexgomes.redbag.networking.response.DonorLoginRegisterResponse
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  * Created by agomes on 9/14/18.
@@ -30,7 +28,6 @@ interface RedBagApiService {
                             @Query("bloodGroup",encoded = false) list: ArrayList<String>,
                             @Query("sort") sort: String): Call<BloodRequestPosts>
 
-//    @POST("/postBloodRequest")
-//    fun requestBlood(@Body requestGetBloodModel: BloodRequestPosts.Posts): Call<Void>
-
+    @POST("/postBloodRequest")
+    fun requestBlood(@Body requestPosts: PostModel): Call<Void>
 }
