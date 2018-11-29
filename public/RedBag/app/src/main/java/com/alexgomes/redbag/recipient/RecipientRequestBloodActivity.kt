@@ -66,7 +66,7 @@ class RecipientRequestBloodActivity : AppCompatActivity() {
                     etBloodGroup.setError("Blood group is required")
                     return@setOnClickListener
                 }
-                etNumberOfBags.getText().trim().isEmpty() -> {
+                etNumberOfBags.getText().trim().isEmpty() || previousBagSelected < 1 -> {
                     etNumberOfBags.setError("Number of bags field is required")
                     return@setOnClickListener
                 }
@@ -123,10 +123,11 @@ class RecipientRequestBloodActivity : AppCompatActivity() {
 
         numberOfBags.setNegativeButton("cancel", DialogInterface.OnClickListener { dialog, which -> dialog.dismiss() })
 
-        numberOfBags.setSingleChoiceItems(arrayAdapter, previousBagSelected, DialogInterface.OnClickListener { dialog, which ->
+        numberOfBags.setSingleChoiceItems(arrayAdapter, previousBagSelected-1, DialogInterface.OnClickListener { dialog, which ->
             val numberOfBagsSelected = arrayAdapter.getItem(which)
             etNumberOfBags.setText(numberOfBagsSelected.toString())
-            previousBagSelected = which
+            numberOfBagsSelected.replace("","")
+            previousBagSelected = which + 1
             etNumberOfBags.setError(null)
             dialog.dismiss()
         })
