@@ -11,6 +11,7 @@ import com.alexgomes.redbag.recipient.RecipientRequestBloodActivity
 import com.alexgomes.redbag.util.PrefUtil
 import kotlinx.android.synthetic.main.activity_asking.*
 
+
 /**
  * Created by agomes on 9/11/18.
  */
@@ -35,5 +36,10 @@ class AskingScreen : AppCompatActivity() {
             startActivity(Intent(AskingScreen@ this, RecipientRequestBloodActivity::class.java))
             overridePendingTransition(R.anim.slide_in_right, R.anim.scale_out)
         })
+
+        developer_preview.setOnClickListener {
+            val ft = supportFragmentManager.beginTransaction()
+            RoadMapDialog.newInstance().show(ft, null)
+        }
     }
 }

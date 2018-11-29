@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:paddingRight="20dp"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.alexgomes.redbag.custom.CustomTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ROADMAP"
+            android:textSize="20sp"
+            app:custom_font="@string/font_bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/c1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:checked="true"
+            android:scaleType="center"
+            android:src="@android:drawable/checkbox_on_background"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <com.alexgomes.redbag.custom.CustomTextView
+            android:id="@+id/c1t"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Donor can login/register"
+            app:layout_constraintLeft_toRightOf="@id/c1"
+            app:layout_constraintTop_toTopOf="@id/c1" />
+
+        <ImageView
+            android:id="@+id/c2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:checked="true"
+            android:scaleType="center"
+            android:src="@android:drawable/checkbox_on_background"
+            app:layout_constraintLeft_toLeftOf="@id/c1"
+            app:layout_constraintTop_toBottomOf="@id/c1t" />
+
+        <com.alexgomes.redbag.custom.CustomTextView
+            android:id="@+id/c2t"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Donor can view list of recipient"
+            app:layout_constraintLeft_toRightOf="@id/c1"
+            app:layout_constraintTop_toTopOf="@id/c2" />
+
+        <ImageView
+            android:id="@+id/c3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:checked="true"
+            android:scaleType="center"
+            android:src="@android:drawable/checkbox_on_background"
+            app:layout_constraintLeft_toLeftOf="@id/c1"
+            app:layout_constraintTop_toBottomOf="@id/c2t" />
+
+        <com.alexgomes.redbag.custom.CustomTextView
+            android:id="@+id/c3t"
+            android:layout_width="0dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Donor can see recipient details from list by tapping item"
+            app:layout_constraintLeft_toRightOf="@id/c3"
+            app:layout_constraintTop_toTopOf="@id/c3" />
+
+        <ImageView
+            android:id="@+id/c4"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="center"
+            android:src="@android:drawable/checkbox_off_background"
+            app:layout_constraintLeft_toLeftOf="@id/c1"
+            app:layout_constraintTop_toBottomOf="@id/c3t" />
+
+        <com.alexgomes.redbag.custom.CustomTextView
+            android:id="@+id/c4t"
+            android:layout_width="0dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Donor can initiate chat with recipient (depends on demand)"
+            app:layout_constraintLeft_toRightOf="@id/c4"
+            app:layout_constraintTop_toTopOf="@id/c4" />
+
+        <ImageView
+            android:id="@+id/c5"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="center"
+            android:src="@android:drawable/checkbox_off_background"
+            app:layout_constraintLeft_toLeftOf="@id/c1"
+            app:layout_constraintTop_toBottomOf="@id/c4t" />
+
+        <com.alexgomes.redbag.custom.CustomTextView
+            android:id="@+id/c5t"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Donor can share recipient request on FB"
+            app:layout_constraintLeft_toRightOf="@id/c5"
+            app:layout_constraintTop_toTopOf="@id/c5" />
+
+        <ImageView
+            android:id="@+id/c6"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            android:scaleType="center"
+            android:src="@android:drawable/checkbox_on_background"
+            app:layout_constraintLeft_toLeftOf="@id/c1"
+            app:layout_constraintTop_toBottomOf="@id/c5t" />
+
+        <com.alexgomes.redbag.custom.CustomTextView
+            android:id="@+id/c6t"
+            android:layout_width="0dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Donor can filter/sort recipient request"
+            app:layout_constraintLeft_toRightOf="@id/c6"
+            app:layout_constraintTop_toTopOf="@id/c6" />
+
+        <ImageView
+            android:id="@+id/c7"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            android:scaleType="center"
+            android:src="@android:drawable/checkbox_on_background"
+            app:layout_constraintLeft_toLeftOf="@id/c1"
+            app:layout_constraintTop_toBottomOf="@id/c6t" />
+
+        <com.alexgomes.redbag.custom.CustomTextView
+            android:id="@+id/c7t"
+            android:layout_width="0dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Recipient can request for blood without any hassle for login/register"
+            app:layout_constraintLeft_toRightOf="@id/c7"
+            app:layout_constraintTop_toTopOf="@id/c7" />
+
+        <ImageView
+            android:id="@+id/c8"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            android:scaleType="center"
+            android:src="@android:drawable/checkbox_off_background"
+            app:layout_constraintLeft_toLeftOf="@id/c1"
+            app:layout_constraintTop_toBottomOf="@id/c7t" />
+
+        <com.alexgomes.redbag.custom.CustomTextView
+            android:id="@+id/c8t"
+            android:layout_width="0dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Implement push notification services (depends on demand)"
+            app:layout_constraintLeft_toRightOf="@id/c8"
+            app:layout_constraintTop_toTopOf="@id/c8" />
+
+        <com.alexgomes.redbag.custom.CustomTextView
+            android:layout_width="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="More to be added..."
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/c8t"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

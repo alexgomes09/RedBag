@@ -41,12 +41,12 @@ passport.use('local', new LocalStrategy({
                     newDonor.save(function(err, donor) {
                         if (err) {
                             console.log("Donor couldn't save", err);
-                            done(err, null)
+                            return done(err, null)
                         } else {
                             var token = createDonorToken({ _id: donor._id });
-                            done(null, false, {
+                            return done(null,true, {
                                 success: true,
-                                message: "Success",
+                                message: "Welcome..!",
                                 token: token,
                                 donor: donor
                             })
@@ -54,7 +54,6 @@ passport.use('local', new LocalStrategy({
                     });
                 }
             });
-
         });
     }));
 

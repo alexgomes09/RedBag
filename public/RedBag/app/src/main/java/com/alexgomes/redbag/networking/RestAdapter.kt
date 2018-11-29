@@ -54,7 +54,10 @@ object RestAdapter {
         try {
             error = converter.convert(response.errorBody())
         } catch (e: IOException) {
-            return BaseModel(false, "Something went wrong! please try again")
+            val baseModel = BaseModel()
+            baseModel.success = false
+            baseModel.message = "Something went wrong! please try again"
+            return baseModel
         }
         return error
     }

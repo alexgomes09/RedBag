@@ -65,4 +65,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/t2"
         app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.alexgomes.redbag.custom.CustomTextView
+        android:id="@+id/developer_preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="Dev roadmap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>

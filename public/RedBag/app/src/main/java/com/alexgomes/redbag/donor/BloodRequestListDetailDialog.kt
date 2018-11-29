@@ -29,13 +29,13 @@ class BloodRequestListDetailDialog : AppCompatDialogFragment() {
 
     companion object {
         fun newInstance(bloodRequestItem: PostModel): BloodRequestListDetailDialog {
-            val fragmentExample = BloodRequestListDetailDialog()
+            val bloodRequestListDetailDialog = BloodRequestListDetailDialog()
 
             val bundle = Bundle()
             bundle.putParcelable("bloodRequestModel", bloodRequestItem)
-            fragmentExample.arguments = bundle
+            bloodRequestListDetailDialog.arguments = bundle
 
-            return fragmentExample
+            return bloodRequestListDetailDialog
         }
     }
 

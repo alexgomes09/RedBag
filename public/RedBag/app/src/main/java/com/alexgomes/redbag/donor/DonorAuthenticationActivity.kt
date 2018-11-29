@@ -96,7 +96,9 @@ class DonorAuthenticationActivity : AppCompatActivity() {
                     LoadingDialog.getInstance().dismiss()
 
                     if (response.isSuccessful) {
-                        PrefUtil.putString(PrefUtil.DONOR_TOKEN, response.body()!!.token)
+                        val donorLoginRegisterResponse = (response.body() as DonorLoginRegisterResponse)
+
+                        PrefUtil.putString(PrefUtil.DONOR_TOKEN, donorLoginRegisterResponse.token)
                         startActivity(Intent(this@DonorAuthenticationActivity, BloodRequestListActivity::class.java))
                         finish()
                     } else {
@@ -115,11 +117,13 @@ class DonorAuthenticationActivity : AppCompatActivity() {
         btnRegister.setOnClickListener {
 
             when {
-                TextUtils.isEmpty(etLoginEmail.getText()) || !Util.isValidEmail(etLoginEmail.getText()) -> {
+                TextUtils.isEmpty(etRegisterEmail.getText()) || !Util.isValidEmail(etRegisterEmail.getText()) -> {
+                    etRegisterEmail.requestFocus()
                     etRegisterEmail.setError("Valid email required")
                     return@setOnClickListener
                 }
-                TextUtils.isEmpty(etLoginPassword.getText()) -> {
+                TextUtils.isEmpty(etRegisterPassword.getText()) -> {
+                    etRegisterPassword.requestFocus()
                     etRegisterPassword.setError("Password required")
                     return@setOnClickListener
                 }
@@ -132,16 +136,19 @@ class DonorAuthenticationActivity : AppCompatActivity() {
 
             Util.hideKeyboard(btnLogin)
 
-            val emailAddress = etLoginEmail.getText()
-            val password = etLoginPassword.getText()
+            val emailAddress = etRegisterEmail.getText()
+            val password = etRegisterPassword.getText()
 
             LoadingDialog.getInstance().showDialog(this, "Registering...")
             RestAdapter.registerWithEmail(emailAddress, password, bloodGroup, object : Callback<DonorLoginRegisterResponse> {
                 override fun onResponse(call: Call<DonorLoginRegisterResponse>, response: Response<DonorLoginRegisterResponse>) {
                     LoadingDialog.getInstance().dismiss()
-                    response.isSuccessful.let {
-                        Util.showToast(this@DonorAuthenticationActivity, "Create Profile Success")
-                        PrefUtil.putString(PrefUtil.USER_CREATED_DONOR_PROFILE, response.body()!!.token)
+
+                    if (response.isSuccessful) {
+                        val donorLoginRegisterResponse = (response.body() as DonorLoginRegisterResponse)
+
+                        Util.showToast(this@DonorAuthenticationActivity, donorLoginRegisterResponse.message)
+                        PrefUtil.putString(PrefUtil.DONOR_TOKEN, donorLoginRegisterResponse.token)
                         startActivity(Intent(this@DonorAuthenticationActivity, BloodRequestListActivity::class.java))
                         finish()
                     }

@@ -8,7 +8,6 @@ import com.alexgomes.redbag.RedBagApplication
 object PrefUtil {
 
     const val USER_FINISHED_ONBOARDING = "USER_FINISHED_ONBOARDING"
-    const val USER_CREATED_DONOR_PROFILE = "USER_CREATED_DONOR_PROFILE"
     const val DONOR_TOKEN = "DONOR_TOKEN"
 
     // put boolean

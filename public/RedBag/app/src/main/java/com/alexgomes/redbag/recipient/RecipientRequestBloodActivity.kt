@@ -97,8 +97,9 @@ class RecipientRequestBloodActivity : AppCompatActivity() {
 
             RestAdapter.requestBlood(requestPost, object : Callback<BaseModel> {
                 override fun onResponse(call: Call<BaseModel>, response: Response<BaseModel>) {
-                    response.isSuccessful.let {
+                    if(response.isSuccessful){
                         Util.showToast(this@RecipientRequestBloodActivity, response.body()!!.message)
+                        finish()
                     }
                 }
 

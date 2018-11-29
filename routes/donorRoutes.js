@@ -31,9 +31,9 @@ function donorRoutes(app, passport) {
         }
 
         passport.authenticate('local', function(err, user, info) {
-            var error = err || info;
-            if (error) return res.status(202).json(error);
+            if (err) return res.status(401).json(error);
             if (!user) return res.status(404).json({ message: 'Something went wrong, please try again.' });
+            if (user) return res.status(200).json(info)
         })(req, res, next)
     })
 
